@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "React.js",
+        "rating": 50,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/3840px-React-icon.svg.png",
+        "created_at": "12/01/2025",
+        "duration": "4 Weeks"
+    },
+    {
+        "id": 2,
+        "name": "Express.js",
+        "rating": 60,
+        "image": "https://img.icons8.com/color/512/express-js.png",
+        "created_at": "12/01/2025",
+        "duration": "4 Weeks"
+    },
+    {
+        "id": 3,
+        "name": "MongoDB",
+        "rating": 30,
+        "image": "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg",
+        "created_at": "12/01/2025",
+        "duration": "4 Weeks"
+    },
+    {
+        "id": 4,
+        "name": "PostgreSQL",
+        "rating": 35,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/960px-Postgresql_elephant.svg.png",
+        "created_at": "12/01/2025",
+        "duration": "4 Weeks"
+    },
+    {
+        "id": 5,
+        "name": "Docker",
+        "rating": 40,
+        "image": "https://brandlogos.net/wp-content/uploads/2025/10/docker_mark-logo_brandlogos.net_yetav.png",
+        "created_at": "12/01/2025",
+        "duration": "4 Weeks"
+    },
+    {
+        "id": 6,
+        "name": "Git&Github",
+        "rating": 35,
+        "image": "https://media.licdn.com/dms/image/v2/D5612AQFkuauK6Ha3Yg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1690626466559?e=2147483647&v=beta&t=bDO6av8m2DQTTDnXAFVp3WAyplDXG_-2fvmp48KNXnM",
+        "created_at": "12/01/2025",
+        "duration": "4 Weeks"
+    }
+]
