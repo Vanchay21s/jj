@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import ProductsPage from "./pages/ProductPage.jsx";
 import Education from "./components/Secret/Education.jsx";
+import DetailSkill from "./components/Secret/DetailSkill.jsx";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductsPage dark={dark} setDark={setDark} />} />
         <Route path="/education" element={<Education/>} />
+        <Route path="/detail-skill" element={<DetailSkill/>} />
       </Routes>
     </BrowserRouter>
     </>
