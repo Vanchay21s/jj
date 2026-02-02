@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../api/product.api.js";
 
- const useProducts = {
+ export const useProducts = {
   find(){
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
@@ -18,3 +18,4 @@ import { getProducts } from "../api/product.api.js";
     return { data, loading, error };
   }
 }
+

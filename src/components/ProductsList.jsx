@@ -11,6 +11,9 @@ export default function ProductsList({ products }) {
               <Link to="/detail-skill" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Skill
               </Link>
+              <Link to="/contact" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Contact
+              </Link>
             </div>
             <div className="grid grid-cols-2 2 md:grid-cols-2 lg:grid-cols-4 gap-3  ">
                 {products.map((s) => (
