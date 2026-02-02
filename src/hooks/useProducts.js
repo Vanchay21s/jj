@@ -2,17 +2,19 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../api/product.api.js";
 
-export function useProducts() {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+ const useProducts = {
+  find(){
+    const [data, setData] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    getProducts()
-      .then(setData)
-      .catch(setError)
-      .finally(() => setLoading(false));
-  }, []);
+    useEffect(() => {
+      getProducts()
+          .then(setData)
+          .catch(setError)
+          .finally(() => setLoading(false));
+    }, []);
 
-  return { data, loading, error };
+    return { data, loading, error };
+  }
 }

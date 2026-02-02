@@ -2,6 +2,8 @@
 import apiFetch from "./client.js";
 import ENDPOINTS from "./endpoints.js";
 
-export const getUsers = () => apiFetch(ENDPOINTS.USERS, {method: 'GET'});
-export const getUserById = (id) =>
+const getUsers = () => apiFetch(ENDPOINTS.USERS, {method: 'GET'});
+const getUserById = (id) =>
   apiFetch(`${ENDPOINTS.USERS}/${id}`, {method: 'GET'});
+
+export {getUsers, getProducts}
