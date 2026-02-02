@@ -1,6 +1,8 @@
 import {useState, useEffect} from "react";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import ProductsPage from "./pages/ProductPage.jsx";
+import Education from "./components/Secret/Education.jsx";
+import DetailSkill from "./components/Secret/DetailSkill.jsx";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -22,7 +24,17 @@ function App() {
   return (
     <>
     <BrowserRouter >
-      <ProductsPage />
+      <div className="flex justify-center dark-mode border-b">
+        <button
+          className="box-product m-4 items-center"
+          onClick={() => setDark(!dark)}>Dark-Mode</button>
+      </div>
+      
+      <Routes>
+        <Route path="/" element={<ProductsPage dark={dark} setDark={setDark} />} />
+        <Route path="/education" element={<Education/>} />
+        <Route path="/detail-skill" element={<DetailSkill/>} />
+      </Routes>
     </BrowserRouter>
     </>
   );
