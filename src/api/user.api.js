@@ -6,4 +6,4 @@ const getUsers = () => apiFetch(ENDPOINTS.USERS, {method: 'GET'});
 const getUserById = (id) =>
   apiFetch(`${ENDPOINTS.USERS}/${id}`, {method: 'GET'});
 
-export {getUsers, getProducts}
+export {getUsers, getUserById}
