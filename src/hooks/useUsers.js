@@ -4,15 +4,15 @@ import { getUsers } from "../api/user.api.js";
 
 export function useUsers() {
   const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [userError, setUserError] = useState(null);
+  const [userLoading, setUserLoading] = useState(true);
 
   useEffect(() => {
     getUsers()
       .then(setData)
-      .catch(setError)
-      .finally(() => setLoading(false));
+      .catch(setUserError)
+      .finally(() => setUserLoading(false));
   }, []);
 
-  return { data, loading, error };
+  return { data, userLoading, userError };
 }
