@@ -1,5 +1,5 @@
 // src/pages/UsersPage.jsx
-import { useUsers } from "../hooks/useUsers.js";
+import { useUsers } from "../hooks/userHook/useGetUsers.js";
 import UserList from "../components/UserList.jsx";
 import { useState } from "react";
 import useCreateUser from "../hooks/userHook/useCreateUser.js";
