@@ -2,35 +2,35 @@
 import { useUsers } from "../hooks/useUsers.js";
 import UserList from "../components/UserList.jsx";
 import { useState } from "react";
-import { AddUser } from "./AddUser.jsx";
+import useCreateUser from "../hooks/userHook/useCreateUser.js";
 
 export default function UsersPage() {
-  const { data, userLoading, userError } = useUsers();
-  const [open, setOpen] = useState(false)
-  const [form, setForm] = useState({ name: "", email: "" });
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false);
+  const { data, loading, error } = useUsers();
+  const {submit, loading: saving, message} = useCreateUser();
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: ""
+  });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error loading users</p>;
 
-  if (userLoading) return <p>Loading...</p>;
-  if (userError) return <p>Error loading users</p>;
-  console.log(data)
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const handleSubmit = async (e) => {
+  const handleChange = (e) =>{
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  }
+  const handleSubmit = async(e) =>{
     e.preventDefault();
-    loading(true);
-
-    try {
-      await createUser(form);
-      setMessage("Saved successfully!");
-      setForm({ username: "", email: "", password: "" });
-    } catch {
-      setMessage("Error saving data");
-    } finally {
-      loading(false);
-    }
+    await submit(form);
+    setForm({
+      username: "",
+      email: "",
+      password: ""
+    })
+    alert(message);
   }
 
   return(
@@ -70,27 +70,31 @@ export default function UsersPage() {
       </div>
       {open && (
         <article className="fixed inset-0 bg-black/50 flex items-center justify-center">
-          <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-7xl m-auto bg-white p-6 rounded-lg">
+          <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-7xl m-auto bg-white dark:bg-gray-800 p-6 rounded-lg">
+            <div className="w-full max-w-7xl m-auto flex items-center justify-between pb-4">
+              <h1>Add User</h1>
+              <button onClick={()=> setOpen(false)} className="box bg-white text-black">Close</button>
+            </div>
             <input
               name="username"
               value={form.username}
               onChange={handleChange}
               placeholder="Username"
-              className="border p-2 w-full rounded"
+              className="form-input"
             />
             <input
               name="email"
               value={form.email}
               onChange={handleChange}
               placeholder="Email"
-              className="border p-2 w-full rounded"
+              className="form-input"
             />
             <input
               name="password"
               value={form.password}
               onChange={handleChange}
               placeholder="Password"
-              className="border p-2 w-full rounded"
+              className="form-input"
             />
 
             <button
