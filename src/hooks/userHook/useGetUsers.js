@@ -1,6 +1,6 @@
 // src/hooks/useUsers.js
 import { useEffect, useState } from "react";
-import { getUsers } from "../api/user.api.js";
+import { getUsers } from "../../api/user.api.js";
 
 export function useUsers() {
   const [data, setData] = useState([]);

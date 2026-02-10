@@ -3,11 +3,17 @@
 
 /* Custom Components */
 @layer components {
+  .form-input {
+    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md 
+    bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none 
+    focus:ring-2 focus:ring-blue-500 duration-300 transition
+  }
   .dark-mode {
     @apply bg-slate-100 dark:bg-gray-900 text-gray-600 dark:text-white duration-400 cursor-pointer transition
   }
   .box {
-    @apply bg-slate-100 dark:bg-gray-900 text-gray-600 dark:text-white p-4 rounded-lg duration-400 cursor-pointer hover:scale-105 transition
+    @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 
+    cursor-pointer hover:scale-105 transition shadow-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)]
   }
   .box-product{
     @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 
