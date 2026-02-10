@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --animate-wiggle: wiggle 1s ease-in-out infinite;
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: left(2px);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+}
+
 /* Custom Components */
 @layer components {
   .form-input {
@@ -11,12 +24,21 @@
   .dark-mode {
     @apply bg-slate-100 dark:bg-gray-900 text-gray-600 dark:text-white duration-400 cursor-pointer transition
   }
+  .box-button {
+    @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 hover:bg-yellow-400
+    cursor-pointer hover:scale-105 transition shadow-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)]
+  }
   .box {
-    @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 
+    @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 hover:bg-yellow-400
     cursor-pointer hover:scale-105 transition shadow-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)]
   }
   .box-product{
-    @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 
+    @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 hover:bg-yellow-400
     cursor-pointer hover:scale-105 transition shadow-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)]
   }
+}
+body {
+  font-family: "Patrick Hand SC", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
