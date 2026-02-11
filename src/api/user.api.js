@@ -11,4 +11,8 @@ const createUser = (data) =>
     body: JSON.stringify(data)
   });
 
+<<<<<<< HEAD
+export {getUsers, getUserById}
+=======
 export {getUsers, getUserById, createUser}
+>>>>>>> ba84e11bae81e6021ffcf74bcea0eda0fb55e844

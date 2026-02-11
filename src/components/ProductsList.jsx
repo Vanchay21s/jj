@@ -1,20 +1,11 @@
-import { Link } from "react-router-dom";
-
 // src/components/ProductsList.jsx
 export default function ProductsList({ products }) {
-    return (
+    console.log(products);
+  return (
     <div className="h-screen bg-slate-100 dark:bg-gray-900 transition-colors duration-400 flex flex-col items-center justify-center">
         <div className="min-h-screen w-full sm:w-2/3 bg-gray-100 dark:bg-gray-900 flex justify-center py-16 transition-colors duration-400 ">
           <div className="w-full max-w-7xl px-4 py-16 transition-colors duration-400 ">
-            <div className="flex justify-between items-center">
-              <h1 className="text-2xl font-bold text-gray-600 mb-4">Products</h1>
-              <Link to="/detail-skill" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Skill
-              </Link>
-              <Link to="/contact" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Contact
-              </Link>
-            </div>
+            <h1 className="text-2xl font-bold text-gray-600 mb-4">Vanchay</h1>
             <div className="grid grid-cols-2 2 md:grid-cols-2 lg:grid-cols-4 gap-3  ">
                 {products.map((s) => (
                     <div key={s.id} className="box-product font-bold flex items-center">
