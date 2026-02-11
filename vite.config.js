@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // root: resolveConfig(__dirname, 'src'),
+  
   plugins: [react(), tailwindcss()],
   css: {
      preprocessorOptions: {

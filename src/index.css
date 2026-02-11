@@ -2,15 +2,34 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --animate-wiggle: wiggle 1s ease-in-out infinite;
-  @keyframes wiggle {
-    0%,
-    100% {
-      transform: left(2px);
+  --animate-wiggle-left: wiggle-left 0.7s ease-in-out forwards ;
+  @keyframes wiggle-left {
+    0%{
+      transform: translateX(-200px);
+      opacity: 0;
     }
-    50% {
-      transform: rotate(3deg);
+    100%{
+      transform: translateX(0);
+      opacity: 1;
     }
+  }
+  --animate-wiggle-right: wiggle-right 0.7s ease-in-out forwards;
+  @keyframes wiggle-right {
+    0%{
+      transform: translateX(200px);
+      opacity: 0;
+    }
+    100%{
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  --animate-ios-liquid: ios-liquid 6s ease-in-out infinite;
+
+  @keyframes ios-liquid {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 200% 50%; }
+    100% { background-position: 0% 50%; }
   }
 }
 
