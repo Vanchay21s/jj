@@ -6,6 +6,7 @@ import DetailSkill from "./components/Secret/DetailSkill.jsx";
 import Contact from "./components/Secret/Contact.jsx";
 import Dashboad from "./components/Dashboad.jsx";
 import UsersPage from "./pages/UsersPage.jsx";
+import Animation from "./components/Animation.jsx";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -36,6 +37,7 @@ function App() {
         <Route path="/education" element={<Education/>} />
         <Route path="/detail-skill" element={<DetailSkill/>} />
         <Route path="/contact" element={<Contact/>} />
+        <Route path="/test" element={<Animation/>} />
         <Route path="/api" element={<Dashboad/>} >
           <Route path="users" element={<UsersPage />}/>
           <Route path="products" element={<ProductsPage />}/>
