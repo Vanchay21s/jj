@@ -40,6 +40,9 @@
     bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none 
     focus:ring-2 focus:ring-blue-500 duration-300 transition
   }
+  .bg-dark {
+    @apply bg-slate-100 dark:bg-gray-900 text-gray-600 dark:text-white
+  }
   .dark-mode {
     @apply bg-slate-100 dark:bg-gray-900 text-gray-600 dark:text-white duration-400 cursor-pointer transition
   }

@@ -30,7 +30,7 @@ const Contact = () => {
   };
 
   return (
-    <article className=" bg-slate-100  dark:bg-gray-900 transition-colors duration-400 flex flex-col items-center py-6 ">
+    <article className="bg-slate-100 dark:bg-gray-900 transition-colors duration-400 flex flex-col items-center py-6 ">
       <div className="md:flex justify-between w-full md:max-w-7xl px-4 pt-16 transition-colors duration-400 ">
         <div className="w-full md:w-1/2 pb-5 space-y-4 text-gray-700 dark:text-white transition-colors duration-400 ">
           <h1 className="animate-wiggle-left opacity-0 [animation-delay:0ms] mb-6 text-2xl sm:text-6xl font-bold text-gray-700 dark:text-gray-300  ">Contact Information</h1>

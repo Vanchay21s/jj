@@ -40,8 +40,8 @@ export default function UsersPage() {
           <h1>User</h1>
           <button onClick={()=> setOpen(true)} className="box box bg-green-500 text-white">Add User</button>
         </div>
-        <table className="w-full max-w-7xl border rounded-lg overflow-hidden m-auto">
-          <thead className="">
+        <table className="w-full max-w-7xl rounded-base border border-default  overflow-hidden m-auto">
+          <thead className=" bg-gray-300 border rounded-lg">
             <tr>
               <th className="border px-4 py-2 text-left">ID</th>
               <th className="border px-4 py-2 text-left">Name</th>

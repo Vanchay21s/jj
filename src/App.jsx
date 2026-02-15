@@ -7,6 +7,7 @@ import Contact from "./components/Secret/Contact.jsx";
 import Dashboad from "./components/Dashboad.jsx";
 import UsersPage from "./pages/UsersPage.jsx";
 import Animation from "./components/Animation.jsx";
+import Skill from "./pages/Skill.jsx";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -28,19 +29,10 @@ function App() {
   return (
     <>
     <BrowserRouter >
-      <div className="flex justify-center dark-mode border-b">
-        <button onClick={() => setDark(!dark)} className="box-product m-4 items-center">Dark-Mode</button>
-        <Link to="/api" className="box-product m-4 items-center">API</Link>
-      </div>
       <Routes>
-        <Route path="/" element={<ProductsPage dark={dark} setDark={setDark} />} />
-        <Route path="/education" element={<Education/>} />
-        <Route path="/detail-skill" element={<DetailSkill/>} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/test" element={<Animation/>} />
-        <Route path="/api" element={<Dashboad/>} >
+        <Route path="/" element={<Dashboad dark={dark} setDark={setDark}/>} >
           <Route path="users" element={<UsersPage />}/>
-          <Route path="products" element={<ProductsPage />}/>
+          <Route path="skills" element={<Skill />}/>
         </Route>
       </Routes>
     </BrowserRouter>

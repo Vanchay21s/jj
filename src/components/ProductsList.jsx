@@ -8,7 +8,7 @@ export default function ProductsList({ products }) {
         <div className="min-h-screen w-full sm:w-2/3 bg-gray-100 dark:bg-gray-900 flex justify-center py-16 transition-colors duration-400 ">
           <div className="w-full max-w-7xl px-4 py-16 transition-colors duration-400 ">
             <div className="flex justify-between items-center py-3">
-              <h1 className="text-2xl font-bold text-gray-600 mb-4">Vanchay</h1>
+              <h1 className="text-2xl font-bold text-gray-600 mb-4">Products</h1>
               <Link className="box-button" to="/contact">Contact</Link>
               <Link className="box-button" to="/test">Test-Animation</Link>
             </div>
