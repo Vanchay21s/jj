@@ -13,6 +13,7 @@
     "@emailjs/browser": "^4.4.1",
     "@popperjs/core": "^2.11.8",
     "@tailwindcss/vite": "^4.1.18",
+    "axios": "^1.13.5",
     "bootstrap": "^5.3.8",
     "motion": "^12.34.0",
     "react": "^19.2.0",

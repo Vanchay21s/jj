@@ -1,13 +1,8 @@
 import {useState, useEffect} from "react";
 import {BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom";
-import ProductsPage from "./pages/ProductPage.jsx";
-import Education from "./components/Secret/Education.jsx";
-import DetailSkill from "./components/Secret/DetailSkill.jsx";
-import Contact from "./components/Secret/Contact.jsx";
 import Dashboad from "./components/Dashboad.jsx";
-import UsersPage from "./pages/UsersPage.jsx";
-import Animation from "./components/Animation.jsx";
 import Skill from "./pages/Skill.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -31,8 +26,8 @@ function App() {
     <BrowserRouter >
       <Routes>
         <Route path="/" element={<Dashboad dark={dark} setDark={setDark}/>} >
-          <Route path="users" element={<UsersPage />}/>
-          <Route path="skills" element={<Skill />}/>
+          <Route path="profile" element={<ProfilePage />}/>
+          <Route path="skill" element={<Skill />}/>
         </Route>
       </Routes>
     </BrowserRouter>
