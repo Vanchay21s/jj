@@ -17,12 +17,12 @@ const Skill = () =>{
                     <button onClick={()=> setForm(true)} className={`box-button flex items-center gap-2`}><FaPlus />ADD NEW SKILL</button>
                 </div>
                 {loading? 
-                    <table className={`table-fixed w-full mt-10 text-lg rounded-xl bg-yellow-400 border-collapse overfolow-hidden`}>
-                        <caption className="caption-bottom bg-yellow-400 rounded-b-xl">
+                    <table className={`table-fixed w-full mt-10 text-lg  rounded-xl bg-gray-300 border-collapse overfolow-hidden`}>
+                        <caption className="caption-bottom bg-gray-300 rounded-b-xl">
                             {form? "Table of Skill list." : "sssss"}
                             // Table of Skill list.
                         </caption>
-                        <thead className={``}>
+                        <thead className={`text-gray-600 dark:text-white`}>
                             <tr>
                                 <th className={`text-start px-4 py-1`}>NO.</th>
                                 <th className={`text-start px-4 py-1`}>ID</th>
@@ -34,11 +34,11 @@ const Skill = () =>{
                         <tbody>
                             {skills?.data?.map((s, i)=>(
                                 <tr key={s.id}>
-                                    <td className={`bg-white text-start px-4 py-2`}>{1+i}</td>
-                                    <td className={`bg-white text-start px-4 py-2`}>{s.id}</td>
-                                    <td className={`bg-white text-start px-4 py-2`}>{s.name}</td>
-                                    <td className={`bg-white text-start px-4 py-2`}>{s.rating}%</td>
-                                    <td className={`bg-white text-start px-4 py-2 flex justify-start items-center gap-3`}>
+                                    <td className={`bg-white px-4 py-2 `}>{1+i}</td>
+                                    <td className={`bg-white px-4 py-2`}>{s.id}</td>
+                                    <td className={`bg-white px-4 py-2`}>{s.name}</td>
+                                    <td className={`bg-white px-4 py-2`}>{s.rating}%</td>
+                                    <td className={`bg-white px-4 py-2 flex justify-start items-center gap-3`}>
                                         <button className={`bg-green-500 hover:bg-green-600 transition-all ducation-300 cursor-pointer  flex flex-col justify-center items-center px-5 rounded-full text-white`}><p>EDIT</p></button>
                                         <button onClick={() => removeSkill(s.id)} className={`bg-red-500 hover:bg-red-600 transition-all ducation-300 cursor-pointer  flex justify-center items-center px-5 rounded-full text-white`}>REMOVE</button>
                                     </td>
