@@ -5,18 +5,18 @@ import { data } from "react-router-dom";
 const useSkill = (pageSize = 5) => {
     const [skills, setSkills] = useState([null])
     const [loading, setLoading] = useState(false)
-    const [page, setPage] = useState(1);
 
     const load = async () => {
         try{
             // setLoading(false);
             const data = await SkillService.find();
             setSkills(data);
-            setLoading(true);
         }catch(err){
             console.error("Load failed: ", err )
-            setSkills([]); // fallback to empty array
+            setSkills([]); 
             setLoading(false);
+        }finally{
+            setLoading(true);
         }
     }; 
     const addSkill = async (skill) => {
@@ -29,18 +29,13 @@ const useSkill = (pageSize = 5) => {
     };   
     const removeSkill = async (id) => {
         await SkillService.remove(id);
+        await load();
     };
     useEffect(()=>{
         load()
     }, [])
-    const totalPages = Math.ceil(skills.length / pageSize);
 
-    const pagedSkill = useMemo(() => {
-        const start = (page - 1) * pageSize;
-        return skills.slice(start, start + pageSize);
-    }, [skills, page, pageSize]);
-
-    return {skills: pagedSkill, loading, page, totalPages, setPage, addSkill, removeSkill }
+    return {skills, loading, addSkill, removeSkill }
 }
 
 
