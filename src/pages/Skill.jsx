@@ -20,8 +20,8 @@ const Skill = () =>{
                     <button onClick={()=> setForm(true)} className={`box-button flex items-center gap-2`}><FaPlus />ADD NEW SKILL</button>
                 </div>
                 {loading? 
-                    <table className={`table-fixed w-full mt-10 text-lg  rounded-xl bg-gray-300 border-collapse overfolow-hidden`}>
-                        <caption className="caption-bottom bg-gray-300 rounded-b-xl">
+                    <table className={`table-fixed w-full mt-10 text-lg  rounded-xl bg-gray-200 border-collapse overfolow-hidden`}>
+                        <caption className="caption-bottom bg-gray-200 rounded-b-xl">
                             Table of Skill list.
                         </caption>
                         <thead className={`text-gray-600 dark:text-white`}>
@@ -67,9 +67,12 @@ const Skill = () =>{
                         <div className="bg-white p-6 rounded-lg w-80">
                             <div className="flex justify-between itemsp-center">
                                 <h1 className={`flex items-center gap-2`}><FaPlus />EDIT SKILL</h1>
-                                <button onClick={()=> setEdit(false)} className={`box-button flex items-center gap-2`}>Cancel</button>
+                                <button onClick={()=> setEdit(false)} className={`box-button flex items-center gap-2`}><AiOutlineClose/> Cancel</button>
                             </div>
-                            <InputUpdateSkill updateSkill={updateSkill} setEdit={setEdit}/>
+                            <InputUpdateSkill 
+                                // updateSkill={updateSkill} 
+                                setEdit={setEdit}
+                            />
                         </div>
                     </div>
                 )}

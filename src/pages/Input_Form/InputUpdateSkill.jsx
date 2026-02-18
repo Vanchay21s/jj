@@ -30,6 +30,10 @@ const InputUpdateSkill = ({ updateSkill, setEdit }) => {
         placeholder="Rating"
         className={`focus:outline-0 border-b p-4 focus:border-y-amber-400`}
       />
+      <input 
+        type="file" 
+        className={`bg-gray-200 p-4 hover:scale-102 hover:bg-yellow-400 rounded-lg duration-400  cursor-pointer`}
+      />
       <button className={`box-button`}>ADD</button>
     </form>
   );
