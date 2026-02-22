@@ -35,6 +35,9 @@
 
 /* Custom Components */
 @layer components {
+  .btn-dashboard {
+    @apply text-base hover:bg-gray-700/50 py-3 px-6 rounded-full transition-all duration-300
+  }
   .form-input {
     @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md 
     bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none 
