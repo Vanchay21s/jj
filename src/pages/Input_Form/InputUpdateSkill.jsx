@@ -16,7 +16,7 @@ const InputUpdateSkill = ({ updateSkill, setEdit }) => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-6">
       <input
-        value={name}
+        value={name} 
         onChange={(e) => setName(e.target.value)}
         placeholder="Name"
         className={`focus:outline-0 border-b p-4 focus:border-y-amber-400`}

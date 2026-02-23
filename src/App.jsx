@@ -3,6 +3,7 @@ import {BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom"
 import Dashboad from "./components/Dashboad.jsx";
 import Skill from "./pages/Skill.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
+import TestForm from "./pages/Input_Form/TestForm.jsx";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -25,6 +26,7 @@ function App() {
     <>
     <BrowserRouter >
       <Routes>
+        <Route path="/test" element={<TestForm/>} />
         <Route path="/" element={<Dashboad dark={dark} setDark={setDark}/>} >
           <Route path="profile" element={<ProfilePage />}/>
           <Route path="skill" element={<Skill />}/>
