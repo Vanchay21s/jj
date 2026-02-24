@@ -29,43 +29,54 @@ const TestForm = () => {
 
     console.log(username)
     return(
-        <article>
-            <form onSubmit={handleSubmitProfile}>
+        <article className="bg-gray-300 ">
+            <form onSubmit={handleSubmitProfile}
+            className="w-full max-w-7xl m-auto py-3">
                 <input 
                     type="text"
                     value={username}
                     placeholder="Username"
                     onChange={(e)=>setUsername(e.target.value)}
-                    className=""
+                    className={`form-input`}
                 />
                 <input type="text"
                     value={name}
                     placeholder="name"
                     onChange={(e) => setName(e.target.value)}
+                    className={`form-input`}
                 />
                 <input type="text"
                     value={phone}
                     placeholder="Phone munber"
                     onChange={(e) => setPhone(e.target.value)}
+                    className={`form-input`}
                 />
                 <input type="email"
                     value={email}
                     placeholder="Email"
                     onChange={(e) => setEmail(e.target.value)}
+                    className={`form-input`}
                 />
                 <input type="text"
                     value={address}
                     placeholder="Address"
                     onChange={(e) => setAddress(e.target.value)}
+                    className={`form-input`}
                 />
                 <input type="text"
                     value={about}
                     placeholder="About"
                     onChange={(e) => setAbout(e.target.value)}
+                    className={`form-input`}
                 />
                 <input type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
+                    className={`form-input`}
+                />
+                <input type="file"
+                    value={file}
+                    
                 />
                 <button>OK</button>
             </form>
