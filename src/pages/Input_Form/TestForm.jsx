@@ -31,7 +31,7 @@ const TestForm = () => {
     return(
         <article className="bg-gray-300 ">
             <form onSubmit={handleSubmitProfile}
-            className="w-full max-w-7xl m-auto py-3">
+            className="w-full max-w-7xl m-auto py-3 gap-2 flex flex-col">
                 <input 
                     type="text"
                     value={username}
@@ -75,10 +75,10 @@ const TestForm = () => {
                     className={`form-input`}
                 />
                 <input type="file"
-                    value={file}
-                    
+                    // value={file}
+                    className={`form-input`}
                 />
-                <button>OK</button>
+                <button className={`form-input`}>OK</button>
             </form>
         </article>
     )
