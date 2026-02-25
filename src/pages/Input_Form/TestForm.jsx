@@ -40,7 +40,7 @@ const TestForm = () => {
     <article className="bg-gray-300 ">
       <form
         onSubmit={handleSubmitProfile}
-        className="w-full max-w-7xl m-auto py-3"
+        className="w-full max-w-7xl m-auto py-3 flex flex-col gap-2"
       >
         <input
           type="text"
@@ -90,8 +90,21 @@ const TestForm = () => {
           onChange={(e) => setDate(e.target.value)}
           className={`form-input`}
         />
-        <input type="file" value={file} />
-        <button>OK</button>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          required
+          className={`form-input`}
+        />
+        {preview && (
+          <img
+            src={preview}
+            alt="Preview"
+            className="w-24 h-24 object-cover rounded-lg"
+          />
+        )}
+        <button className={`form-input`}>OK</button>
       </form>
     </article>
   );
