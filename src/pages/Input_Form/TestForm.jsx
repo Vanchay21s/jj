@@ -38,10 +38,12 @@ const TestForm = () => {
   console.log(username);
   return (
     <article className="bg-gray-300 ">
+      {/* Profile */}
       <form
         onSubmit={handleSubmitProfile}
         className="w-full max-w-7xl m-auto py-3 flex flex-col gap-2"
       >
+        <label htmlFor="">Profile Form</label>
         <input
           type="text"
           value={username}
@@ -106,6 +108,10 @@ const TestForm = () => {
         )}
         <button className={`form-input`}>OK</button>
       </form>
+      {/* Skill */}
+       
+
+      {/* Work */}
     </article>
   );
 };
