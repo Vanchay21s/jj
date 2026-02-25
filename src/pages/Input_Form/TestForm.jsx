@@ -11,12 +11,20 @@ const TestForm = () => {
     const [about, setAbout] = useState("")
     const [date, setDate] = useState("")
     const [passwork, setPasswork] = useState("")
+    const [image, setImage] = useState(null)
+    const [preview, setPreview] = useState(null)
     
     
-
+    const handleImageChange =  (e) => {
+        const file = e.target.files[0]
+        setImage(file)
+        if(file) {
+            setPreview(URL.createObjectURL(file))
+        }
+    }
     const handleSubmitProfile = (e) => {
         e.preventDefault();
-        alert(`Username: ${username}\nName: ${name}\nPhone Number: ${phone}\nEmail: ${email}\nAddress: ${address}\nAbout: ${about}\nDate: ${phone}\nPassword: ${email}\n`)
+        alert(`Username: ${username}\nName: ${name}\nPhone Number: ${phone}\nEmail: ${email}\nAddress: ${address}\nAbout: ${about}\nDate: ${date}\nPassword: ${passwork}\n`)
         setUsername("")
         setName("")
         setPhone("")
@@ -31,7 +39,7 @@ const TestForm = () => {
     return(
         <article className="bg-gray-300 ">
             <form onSubmit={handleSubmitProfile}
-            className="w-full max-w-7xl m-auto py-3">
+            className="w-full max-w-7xl m-auto py-3 gap-1 flex flex-col">
                 <input 
                     type="text"
                     value={username}
@@ -75,10 +83,19 @@ const TestForm = () => {
                     className={`form-input`}
                 />
                 <input type="file"
-                    value={file}
-                    
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className={`form-input`}
                 />
-                <button>OK</button>
+                {
+                    preview && (
+                        <img
+                            src={preview}
+                            className={`w-24 h-24 object-cover rounded-lg`}
+                        />
+                    )
+                }
+                <button className={`form-input`}>OK</button>
             </form>
         </article>
     )

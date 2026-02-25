@@ -20,11 +20,11 @@ const InputSkill = ({ onAdd, setForm }) => {
     // alert(`Name: ${name}\nRating: ${rating}`);
     onAdd({name, rating})
     setName("");
-    setRating("");
+    setRating("");0
     setForm(false)
   };
   
-
+c  
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-6">
       <input
