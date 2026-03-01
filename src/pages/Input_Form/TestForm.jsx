@@ -2,137 +2,135 @@ import { init } from "@emailjs/browser";
 import { useState } from "react";
 
 const initialFormState = {
-    name: '',
-    position: '',
-    github: '',
-    demo: '',
-    framework: '',
-    description: '',
-    image: null,
-    preview: null
-}
+  name: "",
+  position: "",
+  github: "",
+  demo: "",
+  framework: "",
+  description: "",
+  image: null,
+  preview: null,
+};
 const initialFormProfileState = {
-    username: '',
-    name: '',
-    phone: '',
-    email: '',
-    address: '',
-    about: '',
-    data: '',
-    password: '',
-    image: null,
-    preview: null
-}
-const initialFormSkillState ={
-    name: '', 
-    rating: '',
-    image: null,
-    preview: null
-}
+  username: "",
+  name: "",
+  phone: "",
+  email: "",
+  address: "",
+  about: "",
+  data: "",
+  password: "",
+  image: null,
+  preview: null,
+};
+const initialFormSkillState = {
+  name: "",
+  rating: "",
+  image: null,
+  preview: null,
+};
 
 const TestForm = () => {
-    // FormData----
-    const [formProfile, setFormProfile] = useState(initialFormProfileState) //-- Profile
-    const [formSkill, setFormSkill] = useState(initialFormSkillState) //-- Skill
-    const [formWork, setFormWork] = useState(initialFormState) //-- Work
+  // FormData----
+  const [formProfile, setFormProfile] = useState(initialFormProfileState); //-- Profile
+  const [formSkill, setFormSkill] = useState(initialFormSkillState); //-- Skill
+  const [formWork, setFormWork] = useState(initialFormState); //-- Work
 
-    // Handle Input Function----
-    const handleInputProfile = (e) => {
-        const {name, value, type, files} = e.target;
-        if(type === 'file'){
-            const file = files[0]
-            setFormProfile((prev) =>({
-                ...prev,
-                image: file,
-                preview: URL.createObjectURL(file)
-            }))
-        }
-        setFormProfile((prev) => ({
-            ...prev,
-            [name]: value
-        }))
-    }; //Input Profile
-    const handleinputSkill = (e) =>{
-        const {name, value, files, type} = e.target
-        if (type === 'file'){
-            const file = files[0]
-            setFormSkill((prev) => ({
-                ...prev,
-                image: file,
-                preview: URL.createObjectURL(file)
-            }))
-        }else{
-            setFormSkill((prev) => ({
-                ...prev,
-                [name]: value
-            }))
-        }
+  // Handle Input Function----
+  const handleInputProfile = (e) => {
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      const file = files[0];
+      setFormProfile((prev) => ({
+        ...prev,
+        image: file,
+        preview: URL.createObjectURL(file),
+      }));
     }
-    const handleInputWork = (e) =>{
-        const {name, value, files, type} = e.target;
-        if (type === "file"){
-            const file = files[0]
-            setFormWork((prev) =>({
-                ...prev,
-                image: file,
-                preview: URL.createObjectURL(file)
-            }))
-        }
-        setFormWork((prev) => ({
-            ...prev,
-            [name]: value
-        }))
-    } //Input Work
-
+    setFormProfile((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }; //Input Profile
+  const handleinputSkill = (e) => {
+    const { name, value, files, type } = e.target;
+    if (type === "file") {
+      const file = files[0];
+      setFormSkill((prev) => ({
+        ...prev,
+        image: file,
+        preview: URL.createObjectURL(file),
+      }));
+    } else {
+      setFormSkill((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+  const handleInputWork = (e) => {
+    const { name, value, files, type } = e.target;
+    if (type === "file") {
+      const file = files[0];
+      setFormWork((prev) => ({
+        ...prev,
+        image: file,
+        preview: URL.createObjectURL(file),
+      }));
+    }
+    setFormWork((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }; //Input Work
 
   const handleSubmitProfile = (e) => {
     e.preventDefault();
-   console.log(formProfile);
-    alert("ok")
-    resetProfile()
+    console.log(formProfile);
+    alert("ok");
+    resetProfile();
   };
-  const handleSubmitSkill = (e) =>{
+  const handleSubmitSkill = (e) => {
     e.preventDefault();
     console.log(formSkill);
-    alert("ok")
-    resetSkill()
-  }
-  const handleSubmitWork = (e) =>{
+    alert("ok");
+    resetSkill();
+  };
+  const handleSubmitWork = (e) => {
     e.preventDefault();
-    if (!formWork.name || !formWork.position){
-        alert('Please fill in all required fields');
-        return
+    if (!formWork.name || !formWork.position) {
+      alert("Please fill in all required fields");
+      return;
     }
-    window.confirm('Are you sure you want to delete this profile?')
-    resetFormWork()
-  }
+    window.confirm("Are you sure you want to delete this profile?");
+    resetFormWork();
+  };
 
   // Reset Function
   const resetProfile = () => {
-    if(formProfile.preview){
-        URL.revokeObjectURL(formProfile.preview)
+    if (formProfile.preview) {
+      URL.revokeObjectURL(formProfile.preview);
     }
-    setFormProfile(initialFormProfileState)
-  }
+    setFormProfile(initialFormProfileState);
+  };
   const resetSkill = () => {
-    if(formSkill.preview){
-        URL.revokeObjectURL(formSkill.preview)
+    if (formSkill.preview) {
+      URL.revokeObjectURL(formSkill.preview);
     }
-    setFormSkill(initialFormSkillState)
-  }
-  const resetFormWork = () =>{
-    if(formWork.preview){
-        URL.revokeObjectURL(formWork.preview)
+    setFormSkill(initialFormSkillState);
+  };
+  const resetFormWork = () => {
+    if (formWork.preview) {
+      URL.revokeObjectURL(formWork.preview);
     }
-    setFormWork(initialFormState)
-  }
+    setFormWork(initialFormState);
+  };
 
-  // Console...
-//   console.log(username);
   return (
     <article className="bg-gray-300 ">
       {/* Profile */}
-      <form onSubmit={handleSubmitProfile}
+      <form
+        onSubmit={handleSubmitProfile}
         className="w-full max-w-7xl m-auto py-3 flex flex-col gap-2"
       >
         <label htmlFor="">Profile Form</label>
@@ -210,52 +208,64 @@ const TestForm = () => {
         <button className={`form-input`}>OK</button>
       </form>
       {/* Skill is not yet */}
-       <form onSubmit={handleSubmitSkill}
-          className="w-full max-w-7xl m-auto py-3 flex flex-col gap-2"
-       >
-          <input type="text"
-            name="name"
-            value={formSkill.name}
-            placeholder="name"
-            onChange={handleinputSkill}
-            className={`form-input `}
+      <form
+        onSubmit={handleSubmitSkill}
+        className="w-full max-w-7xl m-auto py-3 flex flex-col gap-2"
+      >
+        <label htmlFor="">Skill Form</label>
+        <input
+          type="text"
+          name="name"
+          value={formSkill.name}
+          placeholder="name"
+          onChange={handleinputSkill}
+          className={`form-input `}
+        />
+        <input
+          type="text"
+          name="rating"
+          value={formSkill.rating}
+          placeholder="rating"
+          onChange={handleinputSkill}
+          className={`form-input`}
+        />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleinputSkill}
+          className={`form-input`}
+        />
+        {formSkill.preview && (
+          <img
+            src={formSkill.preview}
+            alt="Preview"
+            className="w-24 h-24 object-cover rounded-lg"
           />
-          <input type="text"
-            name="rating"
-            value={formSkill.rating}
-            placeholder="rating"
-            onChange={handleinputSkill}
-            className={`form-input`}
-          />
-          <input type="file"
-            accept="image/*"
-            onChange={handleinputSkill}
-            className={`form-input`}
-          />
-          {formSkill.preview && (
-            <img
-              src={formSkill.preview}
-              alt="Preview"
-              className="w-24 h-24 object-cover rounded-lg"
-            />
-          )}
-          <button className="form-input">Add</button>
-       </form>
+        )}
+        <button className="form-input">Add</button>
+      </form>
       {/* Work is done */}
-      <form onSubmit={handleSubmitWork}>
-        <input type="text"
-            name="name"
-            value={formWork.name}
-            placeholder="Name Work"
-            onChange={handleInputWork}
+      <form onSubmit={handleSubmitWork}
+        className="w-full max-w-7xl m-auto py-3 flex flex-col gap-2"
+      >
+        <label htmlFor="">Work Form</label>
+        <input
+          type="text"
+          name="name"
+          value={formWork.name}
+          placeholder="Name Work"
+          onChange={handleInputWork}
+          className={`form-input`}
         />
-        <input type="text"
-            name="position"
-            value={formWork.position}
-            placeholder="Positionn"
-            onChange={handleInputWork}
+        <input
+          type="text"
+          name="position"
+          value={formWork.position}
+          placeholder="Positionn"
+          onChange={handleInputWork}
+          className={`form-input`}
         />
-        <button type="submit">ok</button>
+        <button type="submit" className={`form-input`}>ok</button>
       </form>
     </article>
   );
