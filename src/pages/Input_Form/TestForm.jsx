@@ -1,4 +1,5 @@
 import { init } from "@emailjs/browser";
+import { img } from "motion/react-m";
 import { useState } from "react";
 
 const initialFormState = {
@@ -265,8 +266,52 @@ const TestForm = () => {
           onChange={handleInputWork}
           className={`form-input`}
         />
+        <input type="text"
+          name="github"
+          value={formWork.github}
+          placeholder="Your link Github"
+          onChange={handleInputWork}
+          className={`form-input`}
+        />
+        <input type="text"
+          name="demo"
+          value={formWork.demo}
+          placeholder="Your Demo link"
+          onChange={handleInputWork}
+          className={`form-input`}
+        />
+        <input type="text"
+          name="framework"
+          value={formWork.framework}
+          placeholder="Framework"
+          onChange={handleSubmitWork}
+          className={`form-input`}
+        />
+        <input type="text"
+          name="description"
+          value={formWork.description}
+          placeholder="Description"
+          onChange={handleInputWork}
+          className={`form-input`}
+        />
+        <input type="file" 
+           accept="image/*"
+           onChange={handleInputWork}
+           className={`form-input`}
+        />
+        {
+          formWork.preview && (
+            <img 
+              src={formWork.preview} 
+              alt="" 
+              srcset="" 
+              className="w-24 h-24 object-cover rounded-lg"  
+            />
+          )
+        }
         <button type="submit" className={`form-input`}>ok</button>
       </form>
+      
     </article>
   );
 };
