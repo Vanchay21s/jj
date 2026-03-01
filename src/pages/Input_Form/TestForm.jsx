@@ -1,169 +1,262 @@
-import { article } from "motion/react-client";
-import { use, useId, useState } from "react";
+import { init } from "@emailjs/browser";
+import { useState } from "react";
+
+const initialFormState = {
+    name: '',
+    position: '',
+    github: '',
+    demo: '',
+    framework: '',
+    description: '',
+    image: null,
+    preview: null
+}
+const initialFormProfileState = {
+    username: '',
+    name: '',
+    phone: '',
+    email: '',
+    address: '',
+    about: '',
+    data: '',
+    password: '',
+    image: null,
+    preview: null
+}
+const initialFormSkillState ={
+    name: '', 
+    rating: '',
+    image: null,
+    preview: null
+}
 
 const TestForm = () => {
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [about, setAbout] = useState("");
-  const [date, setDate] = useState("");
-  const [passwork, setPasswork] = useState("");
-  const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
-  // Skill
-  const [nameSkill, setNameSkill] = useState("")
-  const [rating, setRating] = useState("")
+    // FormData----
+    const [formProfile, setFormProfile] = useState(initialFormProfileState) //-- Profile
+    const [formSkill, setFormSkill] = useState(initialFormSkillState) //-- Skill
+    const [formWork, setFormWork] = useState(initialFormState) //-- Work
 
-  // HandleImageChange
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-    if (file) {
-      setPreview(URL.createObjectURL(file));
+    // Handle Input Function----
+    const handleInputProfile = (e) => {
+        const {name, value, type, files} = e.target;
+        if(type === 'file'){
+            const file = files[0]
+            setFormProfile((prev) =>({
+                ...prev,
+                image: file,
+                preview: URL.createObjectURL(file)
+            }))
+        }
+        setFormProfile((prev) => ({
+            ...prev,
+            [name]: value
+        }))
+    }; //Input Profile
+    const handleinputSkill = (e) =>{
+        const {name, value, files, type} = e.target
+        if (type === 'file'){
+            const file = files[0]
+            setFormSkill((prev) => ({
+                ...prev,
+                image: file,
+                preview: URL.createObjectURL(file)
+            }))
+        }else{
+            setFormSkill((prev) => ({
+                ...prev,
+                [name]: value
+            }))
+        }
     }
-  };
+    const handleInputWork = (e) =>{
+        const {name, value, files, type} = e.target;
+        if (type === "file"){
+            const file = files[0]
+            setFormWork((prev) =>({
+                ...prev,
+                image: file,
+                preview: URL.createObjectURL(file)
+            }))
+        }
+        setFormWork((prev) => ({
+            ...prev,
+            [name]: value
+        }))
+    } //Input Work
 
-  const [imgSkill, setImgSkill] = useState(null)
-  const [skillView, setSkillView] = useState(null)
-  const handleImgSkill = (e) =>{
-    const file = e.target.files[0]
-    setImgSkill(file)
-    if (file){
-      setSkillView(URL.createObjectURL(file))
-    }
-  }
 
-  // Handle Profile
   const handleSubmitProfile = (e) => {
     e.preventDefault();
-    alert(
-      `Username: ${username}\nName: ${name}\nPhone Number: ${phone}\nEmail: ${email}\nAddress: ${address}\nAbout: ${about}\nDate: ${date}\nPassword: ${passwork}\n`,
-    );
-    setUsername("");
-    setName("");
-    setPhone("");
-    setEmail("");
-    setAddress("");
-    setAbout("");
-    setDate("");
-    setPasswork("");
+   console.log(formProfile);
+    alert("ok")
+    resetProfile()
   };
-  // Handle Skill
   const handleSubmitSkill = (e) =>{
     e.preventDefault();
+    console.log(formSkill);
     alert("ok")
+    resetSkill()
+  }
+  const handleSubmitWork = (e) =>{
+    e.preventDefault();
+    if (!formWork.name || !formWork.position){
+        alert('Please fill in all required fields');
+        return
+    }
+    window.confirm('Are you sure you want to delete this profile?')
+    resetFormWork()
   }
 
+  // Reset Function
+  const resetProfile = () => {
+    if(formProfile.preview){
+        URL.revokeObjectURL(formProfile.preview)
+    }
+    setFormProfile(initialFormProfileState)
+  }
+  const resetSkill = () => {
+    if(formSkill.preview){
+        URL.revokeObjectURL(formSkill.preview)
+    }
+    setFormSkill(initialFormSkillState)
+  }
+  const resetFormWork = () =>{
+    if(formWork.preview){
+        URL.revokeObjectURL(formWork.preview)
+    }
+    setFormWork(initialFormState)
+  }
 
   // Console...
-  console.log(ok)
-  console.log(username);
+//   console.log(username);
   return (
     <article className="bg-gray-300 ">
       {/* Profile */}
-      <form
-        onSubmit={handleSubmitProfile}
+      <form onSubmit={handleSubmitProfile}
         className="w-full max-w-7xl m-auto py-3 flex flex-col gap-2"
       >
         <label htmlFor="">Profile Form</label>
         <input
           type="text"
-          value={username}
+          name="username"
+          value={formProfile.username}
           placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleInputProfile}
           className={`form-input`}
         />
         <input
           type="text"
-          value={name}
+          name="name"
+          value={formProfile.name}
           placeholder="name"
-          onChange={(e) => setName(e.target.value)}
+          onChange={handleInputProfile}
           className={`form-input`}
         />
         <input
           type="text"
-          value={phone}
+          name="phone"
+          value={formProfile.phone}
           placeholder="Phone munber"
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={handleInputProfile}
           className={`form-input`}
         />
         <input
           type="email"
-          value={email}
+          name="email"
+          value={formProfile.email}
           placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleInputProfile}
           className={`form-input`}
         />
         <input
           type="text"
-          value={address}
+          name="address"
+          value={formProfile.address}
           placeholder="Address"
-          onChange={(e) => setAddress(e.target.value)}
+          onChange={handleInputProfile}
           className={`form-input`}
         />
         <textarea
           type="text"
-          value={about}
+          name="about"
+          value={formProfile.about}
           placeholder="About"
-          onChange={(e) => setAbout(e.target.value)}
+          onChange={handleInputProfile}
           cols={20}
           rows={5}
           className={`form-input`}
         />
         <input
           type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          name="date"
+          value={formProfile.date}
+          onChange={handleInputProfile}
           className={`form-input`}
         />
         <input
           type="file"
           accept="image/*"
-          onChange={handleImageChange}
+          onChange={handleInputProfile}
           required
           className={`form-input`}
         />
-        {preview && (
+        {formProfile.preview && (
           <img
-            src={preview}
+            src={formProfile.preview}
             alt="Preview"
             className="w-24 h-24 object-cover rounded-lg"
           />
         )}
         <button className={`form-input`}>OK</button>
       </form>
-      {/* Skill */}
+      {/* Skill is not yet */}
        <form onSubmit={handleSubmitSkill}
           className="w-full max-w-7xl m-auto py-3 flex flex-col gap-2"
        >
           <input type="text"
-            value={nameSkill}
+            name="name"
+            value={formSkill.name}
             placeholder="name"
-            onChange={(e) => setNameSkill(e.target.value)}
+            onChange={handleinputSkill}
             className={`form-input `}
           />
           <input type="text"
-            value={rating}
+            name="rating"
+            value={formSkill.rating}
             placeholder="rating"
-            onChange={(e) => setRating(e.target.value)}
+            onChange={handleinputSkill}
             className={`form-input`}
           />
           <input type="file"
             accept="image/*"
-            onChange={handleImgSkill}
+            onChange={handleinputSkill}
+            className={`form-input`}
           />
-          {skillView && (
+          {formSkill.preview && (
             <img
-              src={skillView}
+              src={formSkill.preview}
               alt="Preview"
               className="w-24 h-24 object-cover rounded-lg"
             />
           )}
-          <button className="form">Add</button>
+          <button className="form-input">Add</button>
        </form>
-      {/* Work */}
+      {/* Work is done */}
+      <form onSubmit={handleSubmitWork}>
+        <input type="text"
+            name="name"
+            value={formWork.name}
+            placeholder="Name Work"
+            onChange={handleInputWork}
+        />
+        <input type="text"
+            name="position"
+            value={formWork.position}
+            placeholder="Positionn"
+            onChange={handleInputWork}
+        />
+        <button type="submit">ok</button>
+      </form>
     </article>
   );
 };
