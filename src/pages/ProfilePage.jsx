@@ -1,68 +1,6 @@
 import { FaHome, FaSearch } from "react-icons/fa"
 
 const ProfilePage = () => {
-    const data = [
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-        { id: 1, name: "Alice", age: 25 },
-        { id: 2, name: "Bob", age: 30 },
-        { id: 3, name: "Charlie", age: 22 },
-        { id: 4, name: "Diana", age: 28 },
-        { id: 5, name: "Ethan", age: 35 },
-    ];
     return (
         <article className="w-full h-full flex flex-col">
             <div className={`flex justify-between items-center gap-4 pb-2 border-b border-gray-700`}>
@@ -77,17 +15,14 @@ const ProfilePage = () => {
                 </div>
             </div>
             <div className="w-full flex-1 flex mt-2 gap-4 overflow-hidden scrtollbar-hide">
-                <div className="w-4/6 h-full bg-gray-600 overflow-y-auto ">
-                    {
-                        data.map((d, i) => (
-                            <div key={d.id} className={`${i % 2 === 0 ? 'bg-gray-500':'bg-gray-600'} p-2 border-b `}>
-                                <div className="font-bold">{d.name}</div>
-                                <div>Age: {d.age}</div>
-                            </div>
-                        ))
-                    }
+                <div className="w-4/6 h-full bg-gray-600 overflow-y-auto rounded-lg ">
+                    {/* <div className={`${i % 2 === 0 ? 'bg-gray-500':'bg-gray-600'} p-2 border-b `}> */}
+                    <div className={`bg-gray-500 p-2 border-b `}>
+                        <div className="font-bold">asdasd</div>
+                        <div>ssss</div>
+                    </div>
                 </div>
-                <div className="w-2/6 bg-gray-500">Insert</div>
+                <div className="w-2/6 bg-gray-500 rounded-lg">Insert</div>
             </div>
         </article>
     )
