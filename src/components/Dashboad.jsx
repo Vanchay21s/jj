@@ -4,7 +4,6 @@ import { Link, Outlet} from "react-router-dom"
 const Dashboad = ({dark, setDark}) =>{
 
     const [active, setActive] = useState(null)
-    console.log(active)
     return(
         <article className="bg-dark border-b flex overflow-hidden">
             <div className="w-96 h-screen bg-gray-800 flex flex-col dark-mode p-4" >
@@ -16,7 +15,6 @@ const Dashboad = ({dark, setDark}) =>{
             <div className="w-full h-screen bg-gray-800 p-4 overflow-hidden">
                 <Outlet />
             </div>
-            
         </article>
     )
 }
