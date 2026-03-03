@@ -2,22 +2,23 @@ import { FaPen, FaSave } from "react-icons/fa";
 import { useState } from "react";
 import gojo from "../image/gojo.jpg";
 import { Alert } from "bootstrap";
-import { form } from "motion/react-client";
+import { div, form } from "motion/react-client";
 
 const initState = {
-  username: "",
-  name: "",
-  phone: "",
-  email: "",
-  address: "",
-  about: "",
-  date: "",
-  password: "",
+  username: "Vanchay",
+  name: "Meas Vanchay",
+  phone: "060446580",
+  email: "vanchay@gmail.com",
+  address: "133, Kpr, Svr",
+  about: "I am handsome man",
+  date: "2002-02-28",
+  password: "**********",
   image: null,
   preview: null,
 };
 const ProfilePage = () => {
   const [formData, setFormData] = useState(initState);
+  const [open, setOpen] = useState(false)
 
   const handleChangeInput = (e) => {
     const { name, value, type, files } = e.target;
@@ -52,11 +53,14 @@ const ProfilePage = () => {
   return (
     <article className="w-full h-full flex flex-col">
       <h1 className="text-2xl w-full pb-4 border-b border-gray-400">Profile</h1>
+      <button 
+      onClick={() => setOpen(true)}
+      className="absolute right-4 mt-2 text-sm cursor-pointer  flex justify-center items-center border-b">Change password</button>
       <form
         onSubmit={handleSubmit}
         className="w-full h-full mt-2 flex flex-col justify-between"
       >
-        <div>
+        <div className="">
           <h1 className="text-lg mt-2">Profile picture</h1>
           <div className="relative size-36 mt-2">
             {formData.preview ? (
@@ -170,6 +174,16 @@ const ProfilePage = () => {
           <FaSave /> Save
         </button>
       </form>
+      {
+        open && <div className="fixed inset-0 right-0 w-90 flex items-right justify-right bg-black bg-opacity-50" >
+          <h1 className="text-sm w-full pb-4 border-b border-gray-400">Change password</h1>
+          <button onClick={() => setOpen(false)} className="absolute top-0 right-4 text-sm border-b cursor-pointer">close</button>
+          <form action="">
+
+            sdsd  
+          </form>
+        </div>
+      }
     </article>
   );
 };

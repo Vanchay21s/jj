@@ -1,5 +1,6 @@
 import { init } from "@emailjs/browser";
 import { useState } from "react";
+import FormInputFeature from "./FormInputFeature";
 
 const initialFormState = {
   name: "",
@@ -267,6 +268,7 @@ const TestForm = () => {
         />
         <button type="submit" className={`form-input`}>ok</button>
       </form>
+      <FormInputFeature />
     </article>
   );
 };
