@@ -1,5 +1,4 @@
-import { aside } from "motion/react-client"
-import SkillRepo from "../respository/SkillRepo"
+
 
 const SkillService = {
     async find(){
