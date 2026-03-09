@@ -1,10 +1,4 @@
 import { FaHome, FaPlus, FaSearch } from "react-icons/fa";
-import useSkill from "../hooks/useSkill";
-import { useState } from "react";
-import { OrbitProgress } from "react-loading-indicators";
-import InputSkill from "./Input_Form/InputSkill";
-import { AiOutlineClose } from "react-icons/ai";
-import InputUpdateSkill from "./Input_Form/InputUpdateSkill";
 
 const Skill = () => {
   return (
