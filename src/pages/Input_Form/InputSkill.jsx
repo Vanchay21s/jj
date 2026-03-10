@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSkill } from "../../call api/hooks/useSkill";
 
 const init_form = {
   name: "",
@@ -13,30 +14,32 @@ const InputSkill = () => {
   const [values, setValues] = useState(init_form);
   const navigate = useNavigate();
 
+  const {form, handleOnChange} = useSkill()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("1 ==>",form)
+    // const formData = new FormData();
+    // formData.append("name", values.name);
+    // formData.append("rating", values.rating);
+    // formData.append("image", values.image);
 
-    const formData = new FormData();
-    formData.append("name", values.name);
-    formData.append("rating", values.rating);
-    formData.append("image", values.image);
+    // try {
+    //   const res = await axios.post(
+    //     "http://localhost:5000/api/skill",
+    //     formData,
+    //     {
+    //       headers: {
+    //         "Content-Type": "multipart/form-data"
+    //       }
+    //     }
+    //   );
 
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/skill",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        }
-      );
-
-      console.log(res);
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-    }
+    //   console.log(res);
+    //   // navigate("/");
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
   useEffect(()=>{
     axios.get('http://localhost:5000/api/skill').then(res => setData(res.data.data)).catch(err => console.log(err))
@@ -48,9 +51,9 @@ const InputSkill = () => {
         <label>Skill Name</label>
         <input
           type="text"
-          onChange={(e) =>
-            setValues({ ...values, name: e.target.value })
-          }
+          name="name"
+          value={form.name}
+          onChange={handleOnChange}
           required
           />
       </div>
@@ -58,11 +61,10 @@ const InputSkill = () => {
       <div>
         <label>Rating</label>
         <input
-          type="number"
-          step="0.1"
-          onChange={(e) =>
-            setValues({ ...values, rating: e.target.value })
-          }
+          type="text"
+          name="rating"
+          value={form.rating}
+          onChange={handleOnChange}
           required
           />
       </div>
@@ -71,9 +73,8 @@ const InputSkill = () => {
         <label>Image</label>
         <input
           type="file"
-          onChange={(e) =>
-            setValues({ ...values, image: e.target.files[0] })
-          }
+          accept="image*/"
+          onChange={handleOnChange}
           required
           />
       </div>
