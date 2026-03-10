@@ -11,3 +11,8 @@ export const createSkill = async (formData) => {
 
   return response.data;
 };
+
+export const getAll = async () => {
+  const result = await api.get("skill")
+  return result.data
+}

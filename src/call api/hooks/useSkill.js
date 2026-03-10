@@ -33,8 +33,8 @@ export const useSkill = () => {
     const reset = () => {
         setFormData(INITIAL_FORM);
         setPreview(null);
-        // setStatus("idle");
-        // setError(null);
+        setStatus("idle");
+        setError(null);
     }
 
     const handleSubmit = async (e) => {
@@ -45,33 +45,30 @@ export const useSkill = () => {
         try {
             await createSkill(formData)
             setStatus("success")
+            reset()
         }catch (error) {
             setError(error?.response?.data?.message ?? "Something went wrong");
             setStatus("error");
         }
     }
-
-    // async function handleSubmit(e) {
-    //     e.preventDefault();
-    //     if (!form.name.trim() || !form.image) return;
-
-    //     setStatus("loading");
-    //     setError(null);
-
-    //     try {
-    //         await insertWork({ name: form.name.trim(), image: form.image });
-    //         setStatus("success");
-    //         reset();
-    //     } catch (err) {
-    //         setError(err?.response?.data?.message ?? "Something went wrong.");
-    //         setStatus("error");
-    //     }
-    // }
     return {
         formData,
         preview,
+        error,
+        status,
         reset,
         handleOnChange,
         handleSubmit
     };
+}
+
+export const useGetSkill = () => {
+    const [skill, setSkill] = useState([])
+    const loadSkill = async () => {
+        try {
+            
+        } catch (error) {
+            // const
+        }
+    }
 }
