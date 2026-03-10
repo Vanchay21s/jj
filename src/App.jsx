@@ -29,6 +29,7 @@ function App() {
     <BrowserRouter >
       <Routes>
         <Route path="/test" element={<InputSkill/>} />
+        <Route path="/test1" element={<TestForm/>} />
         <Route path="/" element={<Dashboad dark={dark} setDark={setDark}/>} >
           <Route path="profile" element={<ProfilePage />}/>
           <Route path="skill" element={<Skill />}/>

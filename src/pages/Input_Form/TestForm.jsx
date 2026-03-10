@@ -40,7 +40,7 @@ const TestForm = () => {
 
   // Handle Input Function----
   const handleInputProfile = (e) => {
-    const { name, value, type, files } = e.target;
+    const { name, value, files, type } = e.target;
     if (type === "file") {
       const file = files[0];
       setFormProfile((prev) => ({
@@ -48,6 +48,7 @@ const TestForm = () => {
         image: file,
         preview: URL.createObjectURL(file),
       }));
+      return
     }
     setFormProfile((prev) => ({
       ...prev,

@@ -3,48 +3,21 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSkill } from "../../call api/hooks/useSkill";
 
-const init_form = {
-  name: "",
-  rating: "",
-  image: null
-};
 
 const InputSkill = () => {
   const [data, setData] = useState([])
-  const [values, setValues] = useState(init_form);
-  const navigate = useNavigate();
+  // const [values, setValues] = useState(init_form);
+  // const navigate = useNavigate();
 
-  const {form, handleOnChange} = useSkill()
+  const {formData, preview, handleOnChange, handleSubmit} = useSkill()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("1 ==>",form)
-    // const formData = new FormData();
-    // formData.append("name", values.name);
-    // formData.append("rating", values.rating);
-    // formData.append("image", values.image);
-
-    // try {
-    //   const res = await axios.post(
-    //     "http://localhost:5000/api/skill",
-    //     formData,
-    //     {
-    //       headers: {
-    //         "Content-Type": "multipart/form-data"
-    //       }
-    //     }
-    //   );
-
-    //   console.log(res);
-    //   // navigate("/");
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
+  
   useEffect(()=>{
-    axios.get('http://localhost:5000/api/skill').then(res => setData(res.data.data)).catch(err => console.log(err))
+    axios.get('http://localhost:5000/api/skill')
+      .then(res => setData(res.data.data))
+      .catch(err => console.log(err))
   }, [])
-
+  console.log("3==>",formData)
   return (<>
     <form onSubmit={handleSubmit}>
       <div>
@@ -52,7 +25,7 @@ const InputSkill = () => {
         <input
           type="text"
           name="name"
-          value={form.name}
+          value={formData.name}
           onChange={handleOnChange}
           required
           />
@@ -63,7 +36,7 @@ const InputSkill = () => {
         <input
           type="text"
           name="rating"
-          value={form.rating}
+          value={formData.rating}
           onChange={handleOnChange}
           required
           />
@@ -72,25 +45,25 @@ const InputSkill = () => {
       <div>
         <label>Image</label>
         <input
-          type="file"
-          accept="image*/"
-          onChange={handleOnChange}
-          required
-          />
+            type="file"
+            accept="image/*"
+            onChange={handleOnChange}
+            className={`form-input`}
+        />
       </div>
 
       <button type="submit">Add Skill</button>
     </form>
     {data.map((s, index) => (
-      <div key={index}>
-        <p>{s.name}</p>
-        <p>{s.rating}</p>
-        <img
-          src={`http://localhost:5000/uploads/${s.image}`}
-          alt={s.name}
-          width="120"
-        />
-      </div>
+     <div key={index}>
+       <p>{s.name}</p>
+       <p>{s.rating}</p>
+       <img
+         src={`http://localhost:5000/uploads/${s.image}`}
+         alt={s.name}
+         width="120"
+       />
+     </div>
     ))}
           </>
   );

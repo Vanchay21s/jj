@@ -1,48 +1,56 @@
 import { useState } from "react";
+import {createSkill} from "../service/skillService.js";
 
 
 const INITIAL_FORM = {
     name: "",
     rating: "",
-    image: null
+    image: null,
 }
 
 export const useSkill = () => {
-    const [form, setForm] = useState(INITIAL_FORM)
+    const [formData, setFormData] = useState(INITIAL_FORM)
     const [preview, setPreview] = useState(null);
     const [status, setStatus]   = useState("idle"); // idle | loading | success | error
     const [error, setError]     = useState(null);
 
-    // function handleNameChange(e) {
-    //     setForm((prev) => ({ ...prev, name: e.target.value }));
-    // }
-
-    // function handleImageChange(e) {
-    //     const file = e.target.files?.[0] ?? null;
-    //     setForm((prev) => ({ ...prev, image: file }));
-    //     setPreview(file ? URL.createObjectURL(file) : null);
-    // }
     const handleOnChange = (e) => {
-        const {name, value, type, files} = e.target
-        if(type === "files"){
-            const file = files[0]
-            setForm((prev) => ({
+        const { name, value, files, type } = e.target;
+        if (type === "file") {
+            const file = files[0];
+            setFormData((prev) => ({
                 ...prev,
                 image: file,
-            }))
+            }));
             setPreview(URL.createObjectURL(file))
+            return
         }
-        setForm((prev) => ({
+        setFormData((prev) => ({
             ...prev,
-            [name]: value
-        }))
-    } 
-    function reset() {
-        setForm(INITIAL_FORM);
+            [name]: value,
+        }));
+    }; //Inp
+    const reset = () => {
+        setFormData(INITIAL_FORM);
         setPreview(null);
-        setStatus("idle");
-        setError(null);
+        // setStatus("idle");
+        // setError(null);
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        setStatus("loading");
+        setError(null);
+        try {
+            await createSkill(formData)
+            setStatus("success")
+        }catch (error) {
+            setError(error?.response?.data?.message ?? "Something went wrong");
+            setStatus("error");
+        }
+    }
+
     // async function handleSubmit(e) {
     //     e.preventDefault();
     //     if (!form.name.trim() || !form.image) return;
@@ -60,7 +68,10 @@ export const useSkill = () => {
     //     }
     // }
     return {
-        form,
-        handleOnChange
+        formData,
+        preview,
+        reset,
+        handleOnChange,
+        handleSubmit
     };
 }
