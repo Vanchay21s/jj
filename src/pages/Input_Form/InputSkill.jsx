@@ -1,23 +1,47 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useSkill } from "../../call api/hooks/useSkill";
 
+const init_skill = {
+  name: "",
+  rating: "",
+  image: null
+}
 
 const InputSkill = () => {
-  const [data, setData] = useState([])
-  // const [values, setValues] = useState(init_form);
-  // const navigate = useNavigate();
+  const {skill, error, status, addSkill } = useSkill()
 
-  const {formData, preview, handleOnChange, handleSubmit} = useSkill()
+  const [form, setForm] = useState(init_skill)
+  const [preview, setPreview] = useState(null)
 
+  const handleOnChange = (e) => {
+    const {name, value, type, files} = e.target
+    if (type === "file"){
+      const file = files[0]
+      setForm((res) => ({
+        ...res,
+        image: file,
+      }))
+      setPreview(URL.createObjectURL(file))
+      return
+    }
+    setForm((res) => ({
+      ...res,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", form.name);
+    formData.append("rating", form.rating);
+    formData.append("image", form.image);
+
+    addSkill(formData);
+  }
   
-  useEffect(()=>{
-    axios.get('http://localhost:5000/api/skill')
-      .then(res => setData(res.data.data))
-      .catch(err => console.log(err))
-  }, [])
-  console.log("3==>",formData)
+
   return (<>
     <form onSubmit={handleSubmit}>
       <div>
@@ -25,7 +49,7 @@ const InputSkill = () => {
         <input
           type="text"
           name="name"
-          value={formData.name}
+          value={form.name}
           onChange={handleOnChange}
           required
           />
@@ -36,7 +60,7 @@ const InputSkill = () => {
         <input
           type="text"
           name="rating"
-          value={formData.rating}
+          value={form.rating}
           onChange={handleOnChange}
           required
           />
@@ -54,7 +78,7 @@ const InputSkill = () => {
 
       <button type="submit">Add Skill</button>
     </form>
-    {data.map((s, index) => (
+    {skill?.map((s, index) => (
      <div key={index}>
        <p>{s.name}</p>
        <p>{s.rating}</p>

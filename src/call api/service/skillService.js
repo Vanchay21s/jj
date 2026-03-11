@@ -1,18 +1,37 @@
+import { data } from "react-router-dom";
 import api from "../api/axios";
 
 
-export const createSkill = async (formData) => {
-  console.log("SkillService", formData)
-  const response = await api.post("skill", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
 
-  return response.data;
-};
+export const skillService = {
+  async find(){
+    const res = await api.get("skill")
+    return res.data
+  },
 
-export const getAll = async () => {
-  const result = await api.get("skill")
-  return result.data
+  async save(data){
+    const res = await api.post("/skill", data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    })
+    return res.data
+  },
+
+  async findOne(id){
+    const res = await api.get(`/skill/${id}`, {
+      s
+    })
+    return res.data
+  },
+
+  async deleteOne(id){
+    const res = await api.delete(`/skill/${id}`)
+    return res.data
+  },
+
+  async updateOne(id, data){
+    const res = await api.put(`/skill/${id}`, data)
+    return res.data
+  }
 }
