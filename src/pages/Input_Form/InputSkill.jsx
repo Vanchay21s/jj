@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSkill } from "../../call api/hooks/useSkill";
+import { Link, NavLink } from "react-router-dom";
 
 const init_skill = {
   name: "",
@@ -79,15 +80,19 @@ const InputSkill = () => {
       <button type="submit">Add Skill</button>
     </form>
     {skill?.map((s, index) => (
-     <div key={index}>
-       <p>{s.name}</p>
-       <p>{s.rating}</p>
-       <img
-         src={`http://localhost:5000/uploads/${s.image}`}
-         alt={s.name}
-         width="120"
-       />
-     </div>
+      <Link to={`/test/${s.id}`}>
+        <div key={index} className="bg-amber-200 w-52 flex items-center justify-start gap- 4">
+          <img
+            src={`http://localhost:5000/uploads/${s.image}`}
+            alt={s.name}
+            className="size-15 rounded-full "
+          />
+          <div>
+            <p>{s.name}</p>
+            <p>{s.rating}</p>
+          </div>
+        </div>
+      </Link>
     ))}
           </>
   );

@@ -19,9 +19,7 @@ export const skillService = {
   },
 
   async findOne(id){
-    const res = await api.get(`/skill/${id}`, {
-      s
-    })
+    const res = await api.get(`/skill/${id}`)
     return res.data
   },
 
@@ -31,7 +29,11 @@ export const skillService = {
   },
 
   async updateOne(id, data){
-    const res = await api.put(`/skill/${id}`, data)
+    const res = await api.put(`/skill/${id}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    })
     return res.data
   }
 }
