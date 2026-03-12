@@ -43,7 +43,6 @@ export const useSkill =  () => {
         setState("loading")
         setError(null)
         try {
-            console.log("useSkill:", data)
             await skillService.save(data)
             await loadSkill()
             setState("success")
@@ -85,7 +84,7 @@ export const useSkill =  () => {
         skill,
         status,
         error,
-        edit,
+        skillOne,
         oneSkill,
         addSkill,
         editSkill,

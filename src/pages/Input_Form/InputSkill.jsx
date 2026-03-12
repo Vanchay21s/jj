@@ -80,8 +80,8 @@ const InputSkill = () => {
       <button type="submit">Add Skill</button>
     </form>
     {skill?.map((s, index) => (
-      <Link to={`/test/${s.id}`}>
-        <div key={index} className="bg-amber-200 w-52 flex items-center justify-start gap- 4">
+      <Link to={`/test/${s.id}`} key={s.id}>
+        <div key={s.id} className="bg-amber-200 w-52 flex items-center justify-start gap- 4">
           <img
             src={`http://localhost:5000/uploads/${s.image}`}
             alt={s.name}
