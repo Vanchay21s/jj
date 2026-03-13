@@ -7,6 +7,7 @@ import TestForm from "./pages/Input_Form/TestForm.jsx";
 import TextSkillPage from "./pages/Input_Form/TextSkillPage.jsx";
 // import { WorkPage } from "./pages/WorkPage.jsx";
 import InputSkill from "./pages/Input_Form/InputSkill.jsx";
+import { FormSkill } from "./pages/Input_Form/folder_skills/FormSkill.jsx";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -31,10 +32,10 @@ function App() {
       <Routes>
         <Route path="/test" element={<InputSkill/>} />
         <Route path="/test/:id" element={<TextSkillPage/>} />
-        {/* <Route path="/test1" element={<TestForm/>} /> */}
+        <Route path="/tests" element={<TestForm/>} />
         <Route path="/" element={<Dashboad dark={dark} setDark={setDark}/>} >
           <Route path="profile" element={<ProfilePage />}/>
-          <Route path="skill" element={<Skill />}/>
+          <Route path="skill" element={<FormSkill />}/>
           
           {/* <Route path="work" element={<WorkPage />}/> */}
 

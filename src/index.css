@@ -62,8 +62,7 @@
     cursor-pointer hover:scale-105 transition shadow-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)]
   }
 }
-body {
-  font-family: "Patrick Hand SC", cursive;
-  font-weight: 400;
-  font-style: normal;
+body{
+  /* background-color: #0A0A10; */
+  font-family: "'DM Sans', 'Segoe UI', sans-serif",
 }
