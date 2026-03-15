@@ -2,7 +2,7 @@ export const CardSkill = () => {
     return(
         <article className="bg-[#111118] py-4 px-6 rounded-md flex flex-col border-l-3 border-[#7C6AF8] ">
             <div className="flex items-center gap-3">
-                <div className="size-10 bg-gray-300">
+                <div className="size-10 bg-[#0A0A10]">
                     <img src="" alt="" />
                 </div>
                 <div>
