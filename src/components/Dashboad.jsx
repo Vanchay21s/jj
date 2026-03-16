@@ -5,7 +5,7 @@ const Dashboad = ({dark, setDark}) =>{
 
     const [active, setActive] = useState(null)
     return(
-        <article className="bg-[#0A0A10] h- border-b overflow-hidden">
+        <article className="h-svh bg-[#0A0A10] h- border-b overflow-hidden">
             <div className="flex w-full max-w-7xl m-auto pt-[36px] gap-5 text-[#EDEDF8]">
                 <div className="w-96 flex flex-col" >
                     <button onClick={() => setDark(!dark)} className="btn-dashboard">Dark-Mode</button>
