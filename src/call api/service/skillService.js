@@ -6,7 +6,7 @@ import api from "../api/axios";
 export const skillService = {
   async find(){
     const res = await api.get("skill")
-    return res.data
+    return res.data || []
   },
 
   async save(data){

@@ -16,33 +16,55 @@ const RATINGS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
 
 export const FormSkill = () =>{
-    const {skill} = useSkill()
+    const {skill, addSkill, removeSkill} = useSkill()
     const [form, setForm] = useState({
         name: "",
         rating: "",
         image: null
     })
-    p
+    const [preview, setPreview] = useState(null)
     const [editId, setEditId] = useState(null)
 
-    
     const handleEdit = (skill) => {
         setEditId(skill.id)
+        setPreview(null)
         setForm({
             name: skill.name,
             rating: skill.rating,
             image: skill.image,
         })
+        
     }
     const handleCencel = () => {
         setEditId(null)
+        setPreview(null)
         setForm({
             name: "",
             rating: "",
             image: null
         })
+        
     }
-
+    const handleDelete = () => {
+        
+    }
+    const handleOnChange = (e) => {
+        const {name, value, type, files} = e.target
+        if(type === "file"){
+            const file = files[0]
+            setForm((prev) =>({
+                ...prev,
+                image: file,
+            }))
+            setPreview(URL.createObjectURL(file))
+            return
+        }
+        setForm((prev) => ({
+            ...prev,
+            [name]: value
+        }))
+    }  
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         const formData = new FormData()
@@ -50,9 +72,19 @@ export const FormSkill = () =>{
         formData.append("rating", form.rating)
         formData.append("image", form.image)
 
-        alert(formData)
+        if(editId){
+            console.log(form)
+            return
+        }
+        addSkill(formData)
+        setForm({
+            name: "",
+            rating: "",
+            image: null
+        })
+        setPreview(null)
     }
-    
+    // console.log(editId) 
     return(
         <article className="w-full">
             {/* header */}
@@ -72,8 +104,8 @@ export const FormSkill = () =>{
                         your skills
                         <span className="text-[10px] text-[#7C6AF8] bg-[#7C6AF715] uppercase px-2 py-1 border border-[#7C6AF730] rounded-full ml-2">3</span>
                     </h1>
-                    {skill.map((sk) => (
-                        <CardSkill key={sk.id} skill={sk} onEdit={handleEdit} />
+                    {skill?.data?.map((sk) => (
+                        <CardSkill key={sk.id} skill={sk} onEdit={handleEdit} onDelete={removeSkill}/>
                     ))}
                 </div>
                 {/* Skill Form  */}
@@ -94,22 +126,31 @@ export const FormSkill = () =>{
                             <label htmlFor="imageInputId" 
                                 className="border border-[#22223A] bg-[#0A0A10] p-4 rounded-md border-dashed flex flex-col justify-center items-center cursor-pointer"
                             >   
-                                {editId ?(
+                                {preview ? (
+                                    <img
+                                        src={preview}
+                                        alt="No Image"
+                                        className="h-[45px] object-cover rounded-md text-[#66668A] text-[10px] font-bold flex flex-col justify-center items-center"
+                                    /> 
+                                ) : editId? (
                                     <img
                                         src={`http://localhost:5000/uploads/${form.image}`}
-                                        alt="skill"
-                                        className="h-[45px] object-cover rounded-md"
-                                    />      
-                                ):(
+                                        alt="No Image"
+                                        className="h-[45px] object-cover rounded-md text-[#66668A] text-[10px] font-bold flex flex-col justify-center items-center"
+                                    /> 
+                                ) : (
                                     <span className="text-[#66668A] text-[10px] font-bold flex flex-col justify-center items-center"><RiImage2Line size={30} color="#66668A"/> Click to upload</span>
                                 )}
-                                <input id="imageInputId" type="file" className="hidden"/>
+                                <input id="imageInputId" type="file" accept="image/*" onChange={handleOnChange} className="hidden"/>
                             </label>
                         </div>
                         {/* Skill name */}
                         <div>
                             <h1 className="text-[#66668A] uppercase text-[10px] font-bold mb-2 ">Skills name </h1>
                             <select 
+                                name="name"
+                                value={form.name}
+                                onChange={handleOnChange}
                                 className="w-full bg-[#0A0A10]  border border-[#22223A] rounded-md py-2 px-3 text-[#66668A] text-[12px] font-bold"
                             >
                                 {editId?
@@ -125,6 +166,9 @@ export const FormSkill = () =>{
                         <div>
                             <h1 className="text-[#66668A] uppercase text-[10px] font-bold mb-2 ">Skills rating</h1>
                             <select 
+                                name="rating"
+                                value={form.rating}
+                                onChange={handleOnChange}
                                 className="w-full bg-[#0A0A10] border border-[#22223A] rounded-md py-2 px-3 text-[#66668A] text-[12px] font-bold"
                             >
                                 {editId?

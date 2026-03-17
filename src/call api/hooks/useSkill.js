@@ -18,7 +18,7 @@ export const useSkill =  () => {
         setError(null)
         try{
             const res = await skillService.find()
-            setSkill(res.data)
+            setSkill(res)
             setState("success")
         }catch(err){
             setError(err.message)
