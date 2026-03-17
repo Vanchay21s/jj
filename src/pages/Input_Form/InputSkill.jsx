@@ -13,7 +13,7 @@ const InputSkill = () => {
   const {skill, error, status, addSkill, removeSkill } = useSkill()
 
   const [form, setForm] = useState(init_skill)
-  const [preview, setPreview] = useState(null)
+  const [preview, setPreview] = useState(skill.image || null)
 
   const handleOnChange = (e) => {
     const {name, value, type, files} = e.target

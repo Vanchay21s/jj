@@ -2,6 +2,9 @@ import { use, useState } from "react";
 import { CardSkill } from "./CardSkill"
 import { form } from "motion/react-client";
 import { FaPlus } from "react-icons/fa6";
+import { useSkill } from "../../../call api/hooks/useSkill";
+// import {urlImage} from "../../../../public/vite"
+import { RiImage2Line } from "react-icons/ri";
 const SKILLS = [
   "React.js", "Express.js", "MongoDB", "PostgreSQL",
   "Tailwind CSS", "Node.js", "TypeScript", "GraphQL",
@@ -13,24 +16,22 @@ const RATINGS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
 
 export const FormSkill = () =>{
-    const [skills, setSkills] = useState([
-        { id: 1, name: "React.js", rating: 90, image: null },
-        { id: 2, name: "PostgreSQL", rating: 70, image: null },
-        { id: 3, name: "Docker", rating: 60, image: null },
-    ]);
+    const {skill} = useSkill()
     const [form, setForm] = useState({
         name: "",
         rating: "",
         image: null
     })
+    p
     const [editId, setEditId] = useState(null)
 
-    const handleEdit = (skills) => {
-        setEditId(skills.id)
+    
+    const handleEdit = (skill) => {
+        setEditId(skill.id)
         setForm({
-            name: skills.name,
-            rating: skills.rating,
-            image: skills.image,
+            name: skill.name,
+            rating: skill.rating,
+            image: skill.image,
         })
     }
     const handleCencel = () => {
@@ -71,7 +72,7 @@ export const FormSkill = () =>{
                         your skills
                         <span className="text-[10px] text-[#7C6AF8] bg-[#7C6AF715] uppercase px-2 py-1 border border-[#7C6AF730] rounded-full ml-2">3</span>
                     </h1>
-                    {skills.map((sk) => (
+                    {skill.map((sk) => (
                         <CardSkill key={sk.id} skill={sk} onEdit={handleEdit} />
                     ))}
                 </div>
@@ -93,7 +94,15 @@ export const FormSkill = () =>{
                             <label htmlFor="imageInputId" 
                                 className="border border-[#22223A] bg-[#0A0A10] p-4 rounded-md border-dashed flex flex-col justify-center items-center cursor-pointer"
                             >   
-                                <span className="text-[#66668A] text-[10px] font-bold">Click to upload</span>
+                                {editId ?(
+                                    <img
+                                        src={`http://localhost:5000/uploads/${form.image}`}
+                                        alt="skill"
+                                        className="h-[45px] object-cover rounded-md"
+                                    />      
+                                ):(
+                                    <span className="text-[#66668A] text-[10px] font-bold flex flex-col justify-center items-center"><RiImage2Line size={30} color="#66668A"/> Click to upload</span>
+                                )}
                                 <input id="imageInputId" type="file" className="hidden"/>
                             </label>
                         </div>
