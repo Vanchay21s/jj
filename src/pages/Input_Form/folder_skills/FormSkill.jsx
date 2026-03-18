@@ -16,7 +16,7 @@ const RATINGS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
 
 export const FormSkill = () =>{
-    const {skill, addSkill, removeSkill} = useSkill()
+    const {skill, addSkill, removeSkill, editSkill} = useSkill()
     const [form, setForm] = useState({
         name: "",
         rating: "",
@@ -73,7 +73,13 @@ export const FormSkill = () =>{
         formData.append("image", form.image)
 
         if(editId){
-            console.log(form)
+            editSkill(editId, formData)
+            setForm({
+                name: "",
+                rating: "",
+                image: null
+            })
+            setPreview(null)
             return
         }
         addSkill(formData)
@@ -84,7 +90,6 @@ export const FormSkill = () =>{
         })
         setPreview(null)
     }
-    // console.log(editId) 
     return(
         <article className="w-full">
             {/* header */}
