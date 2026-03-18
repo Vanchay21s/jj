@@ -25,6 +25,12 @@ export const FormSkill = () =>{
     const [preview, setPreview] = useState(null)
     const [editId, setEditId] = useState(null)
 
+    const [notification, setNotification] = useState(null)
+
+    const notify = (msg, type = "success") => {
+        setNotification({ msg, type });
+        setTimeout(() => setNotification(null), 2500);
+    };
     const handleEdit = (skill) => {
         setEditId(skill.id)
         setPreview(null)
@@ -43,9 +49,6 @@ export const FormSkill = () =>{
             rating: "",
             image: null
         })
-        
-    }
-    const handleDelete = () => {
         
     }
     const handleOnChange = (e) => {
@@ -67,6 +70,7 @@ export const FormSkill = () =>{
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        if (!form.name || !form.rating) return notify("Please fill all required fields.", "error"); 
         const formData = new FormData()
         formData.append("name", form.name)
         formData.append("rating", form.rating)
@@ -79,7 +83,9 @@ export const FormSkill = () =>{
                 rating: "",
                 image: null
             })
+            setEditId(null)
             setPreview(null)
+            notify("updated!!"); 
             return
         }
         addSkill(formData)
@@ -89,9 +95,15 @@ export const FormSkill = () =>{
             image: null
         })
         setPreview(null)
+        notify("added"); 
     }
+    console.log(notification)
     return(
-        <article className="w-full">
+        <article className="relative w-full">
+            {notification && (
+                <div className="absolute right-0"> {notification.msg}</div>
+            )}
+            
             {/* header */}
             <div className="w-full flex justify-between">
                 <div className="">

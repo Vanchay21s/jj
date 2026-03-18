@@ -52,11 +52,13 @@ export const useSkill =  () => {
         }
     }
 
+    // const editSkill = async ({id, name, rating, image }) => {
     const editSkill = async (id, data) => {
         setState("loading")
         setError(null)
         try{
-            await skillService.updateOne({id: id, data: data})
+            // await skillService.updateOne({id: id, name: name, rating: rating, image: image})
+            await skillService.updateOne(id, data)
             await loadSkill()
         }catch(err){
             setError(err.message)

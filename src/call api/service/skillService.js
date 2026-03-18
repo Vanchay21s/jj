@@ -28,6 +28,8 @@ export const skillService = {
     return res.data
   },
 
+  // async updateOne({id, name, rating, image}){
+  //   const res = await api.put(`/skill/${id}`, {name: name, rating: rating, image: image}, {
   async updateOne(id, data){
     const res = await api.put(`/skill/${id}`, data, {
       headers: {
