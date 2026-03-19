@@ -10,71 +10,82 @@ export const useSkill =  () => {
     const [skillOne, setSkillOne] = useState([])
     const [editId, setEditId] = useState(null)
     
-    const [status, setState] = useState(null)
-    const [error, setError] = useState(null) 
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(null) 
 
     const loadSkill = async () => {
-        setState("loading")
+        setLoading(true)
         setError(null)
         try{
             const res = await skillService.find()
             setSkill(res)
-            setState("success")
         }catch(err){
             setError(err.message)
-            setState("error")
+        }finally{
+            setLoading(false)
         }
     }
     
     const oneSkill = async (id) => {
-        setState("loading")
+        setLoading(true)
         setError(null)
         try{
             const res = await skillService.findOne(id)
             setSkillOne(res.data)
-            setState("success")
         }catch(err) {
             setError(err.message)
-            setState("error")
+        }finally{
+            setLoading(false)
         }
     }
 
     const addSkill = async (data) => {
-        setState("loading")
+        setLoading(true)
         setError(null)
+        setSuccess(null)
         try {
-            await skillService.save(data)
+            const res = await skillService.save(data)
+            if (!res.status){
+                setError(res.message)
+                return
+            }
+            setSuccess(res.message)
             await loadSkill()
-            setState("success")
         } catch (err) {
             setError(err.message)
-            setState("error")
+        }finally{
+            setLoading(false)
         }
     }
 
-    // const editSkill = async ({id, name, rating, image }) => {
     const editSkill = async (id, data) => {
-        setState("loading")
+        setLoading(true)
         setError(null)
+        setSuccess(null)
         try{
-            // await skillService.updateOne({id: id, name: name, rating: rating, image: image})
             await skillService.updateOne(id, data)
+            setSuccess("Skill updated successfully")
             await loadSkill()
         }catch(err){
             setError(err.message)
-            setState("error")
+        }finally{
+            setLoading(false)
         }
     }
 
     const removeSkill = async (id) => {
-        setState("loading")
+        setLoading(true)
         setError(null)
+        setSuccess(null)
         try {
             await skillService.deleteOne(id)
+            setSuccess("Skill deleted successfully")
             await loadSkill()
         } catch (err) {
             setError(err.message)
-            setState("error")
+        }finally {
+            setLoading(false)
         }
     }
 
@@ -84,7 +95,8 @@ export const useSkill =  () => {
 
     return {
         skill,
-        status,
+        loading,
+        success,
         error,
         skillOne,
         oneSkill,

@@ -16,7 +16,7 @@ const RATINGS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
 
 export const FormSkill = () =>{
-    const {skill, addSkill, removeSkill, editSkill} = useSkill()
+    const {skill, loading, success, error, addSkill, removeSkill, editSkill } = useSkill()
     const [form, setForm] = useState({
         name: "",
         rating: "",
@@ -75,7 +75,6 @@ export const FormSkill = () =>{
         formData.append("name", form.name)
         formData.append("rating", form.rating)
         formData.append("image", form.image)
-
         if(editId){
             editSkill(editId, formData)
             setForm({
@@ -89,6 +88,7 @@ export const FormSkill = () =>{
             return
         }
         addSkill(formData)
+        // console.log(skill)
         setForm({
             name: "",
             rating: "",
@@ -97,11 +97,14 @@ export const FormSkill = () =>{
         setPreview(null)
         notify("added"); 
     }
-    console.log(notification)
+    console.log("sssssssssssssssssss",success)
     return(
         <article className="relative w-full">
             {notification && (
                 <div className="absolute right-0"> {notification.msg}</div>
+            )}
+            {success && (
+                <div className="absolute right-0"> {success}ssss</div>
             )}
             
             {/* header */}
