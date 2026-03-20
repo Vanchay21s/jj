@@ -46,11 +46,12 @@ export const useSkill =  () => {
         setSuccess(null)
         try {
             const res = await skillService.save(data)
-            if (!res.status){
-                setError(res.message)
+            console.log(res.status)
+            if (res.status === false){
+                setSuccess({msg: "Skill name already exists", type: "error"})
                 return
             }
-            setSuccess(res.message)
+            setSuccess({msg: "Skill added successfull", type: "added"})
             await loadSkill()
         } catch (err) {
             setError(err.message)
@@ -65,7 +66,7 @@ export const useSkill =  () => {
         setSuccess(null)
         try{
             await skillService.updateOne(id, data)
-            setSuccess("Skill updated successfully")
+            setSuccess({msg: "Skill updated successfull", type: "updated"})
             await loadSkill()
         }catch(err){
             setError(err.message)
@@ -80,7 +81,7 @@ export const useSkill =  () => {
         setSuccess(null)
         try {
             await skillService.deleteOne(id)
-            setSuccess("Skill deleted successfully")
+            setSuccess({msg: "Skill deleted successfully", type: "deleted"})
             await loadSkill()
         } catch (err) {
             setError(err.message)

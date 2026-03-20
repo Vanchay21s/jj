@@ -97,16 +97,27 @@ export const FormSkill = () =>{
         setPreview(null)
         notify("added"); 
     }
-    console.log("sssssssssssssssssss",success)
+    const getSuccessStyle = (type) => {
+        switch (type) {
+            case "added":
+            return "bg-green-100 text-green-700 border-green-400"
+            case "updated":
+            return "bg-blue-100 text-blue-700 border-blue-400"
+            case "deleted":
+            return "bg-red-100 text-red-700 border-red-400"
+            default:
+            return "bg-gray-100 text-gray-700 border-gray-400"
+        }
+    }
     return(
         <article className="relative w-full">
-            {notification && (
-                <div className="absolute right-0"> {notification.msg}</div>
-            )}
             {success && (
-                <div className="absolute right-0"> {success}ssss</div>
+                <div
+                    className={`border-l-4 p-3 mb-3 rounded shadow-sm ${getSuccessStyle(success.type)}`}
+                >
+                    {success.message}
+                </div>
             )}
-            
             {/* header */}
             <div className="w-full flex justify-between">
                 <div className="">
