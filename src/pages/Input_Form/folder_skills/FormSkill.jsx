@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { CardSkill } from "./CardSkill"
 import { form } from "motion/react-client";
 import { FaPlus } from "react-icons/fa6";
@@ -16,7 +16,7 @@ const RATINGS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
 
 export const FormSkill = () =>{
-    const {skill, loading, success, error, addSkill, removeSkill, editSkill } = useSkill()
+    const {skill, loading, success, setSuccess, error, addSkill, removeSkill, editSkill } = useSkill()
     const [form, setForm] = useState({
         name: "",
         rating: "",
@@ -100,22 +100,32 @@ export const FormSkill = () =>{
     const getSuccessStyle = (type) => {
         switch (type) {
             case "added":
-            return "bg-green-100 text-green-700 border-green-400"
+            return "bg-green-950/50 text-green-500 border-green-900/50"
             case "updated":
-            return "bg-blue-100 text-blue-700 border-blue-400"
+            return "bg-yellow-950/50 text-yellow-500 border-yellow-900/50"
             case "deleted":
-            return "bg-red-100 text-red-700 border-red-400"
-            default:
-            return "bg-gray-100 text-gray-700 border-gray-400"
+            return "bg-red-950/50 text-red-500 border-red-900/50"
+            case "error":
+            return "bg-red-950/50 text-red-500 border-red-900/50"
         }
     }
+    useEffect(() => {
+        if(success) {
+            const timer = setTimeout(() => {
+                setSuccess(null)
+            }, 3000)
+            return () => clearTimeout(timer)
+        }
+    }, [success])
+
+    console.log(skill)
     return(
         <article className="relative w-full">
             {success && (
                 <div
-                    className={`border-l-4 p-3 mb-3 rounded shadow-sm ${getSuccessStyle(success.type)}`}
+                    className={`absolute text-[14px] bg font-medium px-3 py-1 border rounded-sm right-0 ${getSuccessStyle(success.type)}`}
                 >
-                    {success.message}
+                    {success.msg}
                 </div>
             )}
             {/* header */}
@@ -133,7 +143,7 @@ export const FormSkill = () =>{
                 <div className="w-2/3 flex flex-col gap-2 ">
                     <h1 className="text-[#66668A] uppercase text-[10px] font-bold mb-2">
                         your skills
-                        <span className="text-[10px] text-[#7C6AF8] bg-[#7C6AF715] uppercase px-2 py-1 border border-[#7C6AF730] rounded-full ml-2">3</span>
+                        <span className="text-[10px] text-[#7C6AF8] bg-[#7C6AF715] uppercase px-2 py-1 border border-[#7C6AF730] rounded-full ml-2">{skill.length}</span>
                     </h1>
                     {skill?.data?.map((sk) => (
                         <CardSkill key={sk.id} skill={sk} onEdit={handleEdit} onDelete={removeSkill}/>
