@@ -10,8 +10,8 @@ export const CardSkill = ({skill, onEdit, onDelete}) => {
                     <img src={`http://localhost:5000/uploads/${skill.image}`} alt="" className=""/>
                 </div>
                 <div>
-                    <h1 className="text-[14px]">{skill.name}</h1>
-                    <h1 className="text-[11px]">{skill.rating}%</h1>
+                    <h1 className="text-[#EDEDF8] text-[14px] font-bold mb-2">{skill.name}</h1>
+                    <h1 className="text-[#EDEDF8] uppercase text-[11px] font-bold mb-2">{skill.rating}%</h1>
                 </div>
             </div>
             <div className="flex gap-2 mt-3">

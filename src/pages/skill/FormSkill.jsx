@@ -2,7 +2,7 @@ import { use, useEffect, useState } from "react";
 import { CardSkill } from "./CardSkill"
 import { form } from "motion/react-client";
 import { FaPlus } from "react-icons/fa6";
-import { useSkill } from "../../../call api/hooks/useSkill";
+import { useSkill } from "../../call api/hooks/useSkill";
 // import {urlImage} from "../../../../public/vite"
 import { RiImage2Line } from "react-icons/ri";
 const SKILLS = [
@@ -70,30 +70,22 @@ export const FormSkill = () =>{
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!form.name || !form.rating) return notify("Please fill all required fields.", "error"); 
+        if (!form.name || !form.rating) return setSuccess({msg: "Please fill all required fields.", type: "error"}); 
         const formData = new FormData()
         formData.append("name", form.name)
         formData.append("rating", form.rating)
         formData.append("image", form.image)
         if(editId){
             editSkill(editId, formData)
-            setForm({
-                name: "",
-                rating: "",
-                image: null
-            })
             setEditId(null)
             setPreview(null)
+            setForm({name: "", rating: "", image: null})
             notify("updated!!"); 
             return
         }
         addSkill(formData)
         // console.log(skill)
-        setForm({
-            name: "",
-            rating: "",
-            image: null
-        })
+        setForm({name: "", rating: "", image: null})
         setPreview(null)
         notify("added"); 
     }
@@ -117,8 +109,6 @@ export const FormSkill = () =>{
             return () => clearTimeout(timer)
         }
     }, [success])
-
-    console.log(skill)
     return(
         <article className="relative w-full">
             {success && (
@@ -143,15 +133,15 @@ export const FormSkill = () =>{
                 <div className="w-2/3 flex flex-col gap-2 ">
                     <h1 className="text-[#66668A] uppercase text-[10px] font-bold mb-2">
                         your skills
-                        <span className="text-[10px] text-[#7C6AF8] bg-[#7C6AF715] uppercase px-2 py-1 border border-[#7C6AF730] rounded-full ml-2">{skill.length}</span>
+                        <span className="text-[10px] text-[#7C6AF8] bg-[#7C6AF715] uppercase px-2 py-1 border border-[#7C6AF730] rounded-full ml-2">{skill?.pagination?.total_skill || 0}</span>
                     </h1>
                     {skill?.data?.map((sk) => (
                         <CardSkill key={sk.id} skill={sk} onEdit={handleEdit} onDelete={removeSkill}/>
                     ))}
                 </div>
                 {/* Skill Form  */}
-                <div className="w-1/3 ">
-                    <form onSubmit={handleSubmit} className="w-full bg-[#111118] py-4 px-6 rounded-md flex flex-col border-t-3 border-[#7C6AF8] gap-5">
+                <div className="w-1/3">
+                    <form onSubmit={handleSubmit} className="w-full bg-[#111118] py-4 px-6 rounded-md border-t-3 border-[#7C6AF8] flex flex-col  gap-5">
                         <h1 className="text-[#66668A] uppercase text-[10px] font-bold">Add skills  
                             {
                                 editId ? 
@@ -226,7 +216,7 @@ export const FormSkill = () =>{
                                     type="button"
                                     onClick={handleCencel}
                                     className="w-full p-3 rounded-sm text-[12px] text-[#8888BB] bg-[#18182A] border border-[#22223A] font-bold cursor-pointer">Cancel</button>
-                                <button className="w-full p-3 rounded-sm text-[12px] text-[#06060C] bg-[#7C6AF7] font-bold cursor-pointer">Update Skill</button>
+                                <button className="w-full p-3 rounded-sm text-[12px] text-[#06060C] bg-[#7C6AF7] font-bold cursor-pointer">{loading ? "Updating..." : "Update Skill"}</button>
                             </div> 
                         ):(
                             <button className="w-full p-3 rounded-sm text-[12px] text-[#06060C] bg-[#7C6AF7] font-bold cursor-pointer flex items-center justify-center gap-1"><FaPlus/> Add Skill</button>

@@ -1,13 +1,9 @@
 import {useState, useEffect} from "react";
 import {BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom";
 import Dashboad from "./components/Dashboad.jsx";
-import Skill from "./pages/Skill.jsx";
-import ProfilePage from "./pages/ProfilePage.jsx";
-import TestForm from "./pages/Input_Form/TestForm.jsx";
-import TextSkillPage from "./pages/Input_Form/TextSkillPage.jsx";
+import { FormSkill } from "./pages/skill/FormSkill.jsx";
+import FormProfile from "./pages/profile/FormProfile.jsx";
 // import { WorkPage } from "./pages/WorkPage.jsx";
-import InputSkill from "./pages/Input_Form/InputSkill.jsx";
-import { FormSkill } from "./pages/Input_Form/folder_skills/FormSkill.jsx";
 
 function App() {
   const [dark, setDark] = useState(() => {
@@ -30,15 +26,9 @@ function App() {
     <>
     <BrowserRouter >
       <Routes>
-        <Route path="/test" element={<InputSkill/>} />
-        <Route path="/test/:id" element={<TextSkillPage/>} />
-        <Route path="/tests" element={<TestForm/>} />
         <Route path="/" element={<Dashboad dark={dark} setDark={setDark}/>} >
-          <Route path="profile" element={<ProfilePage />}/>
+          <Route path="profile" element={<FormProfile />}/>
           <Route path="skill" element={<FormSkill />}/>
-          
-          {/* <Route path="work" element={<WorkPage />}/> */}
-
         </Route>
         
       </Routes>

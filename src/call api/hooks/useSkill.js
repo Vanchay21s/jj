@@ -46,7 +46,6 @@ export const useSkill =  () => {
         setSuccess(null)
         try {
             const res = await skillService.save(data)
-            console.log(res.status)
             if (res.status === false){
                 setSuccess({msg: "Skill name already exists", type: "error"})
                 return
@@ -65,7 +64,11 @@ export const useSkill =  () => {
         setError(null)
         setSuccess(null)
         try{
-            await skillService.updateOne(id, data)
+            const res = await skillService.updateOne(id, data)
+            if (res.status === false){
+                setSuccess({msg: "Skill namess already exists", type: "error"})
+                return
+            }
             setSuccess({msg: "Skill updated.", type: "updated"})
             await loadSkill()
         }catch(err){

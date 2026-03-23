@@ -5,16 +5,16 @@ const Dashboad = ({dark, setDark}) =>{
 
     const [active, setActive] = useState(null)
     return(
-        <article className="h-full bg-[#0A0A10] border-b overflow-hidden">
-            <div className="flex w-full max-w-7xl m-auto pt-[36px] gap-5 text-[#EDEDF8]">
+        <article className="h-full overflow-hidden">
+            <div className="flex w-full max-w-7xl m-auto py-[36px] gap-5 text-[#EDEDF8]">
                 <div className="w-96 flex flex-col" >
                     <button onClick={() => setDark(!dark)} className="btn-dashboard">Dark-Mode</button>
                     <Link className={"btn-dashboard " + (active === "profile" ? "bg-gray-700" : "")} onClick={()=>setActive("profile")}  to="/profile">Profile</Link>
                     <Link className={"btn-dashboard " + (active === "skill" ? "bg-gray-700" : "")} onClick={()=>setActive("skill")}  to="/skill">Skill</Link>
-                    <Link className={"btn-dashboard " + (active === "work" ? "bg-gray-700" : "")} onClick={()=>setActive("work")}  to="/work">Work</Link>
-                    <Link className={"btn-dashboard " + (active === "feature" ? "bg-gray-700" : "")} onClick={()=>setActive("feature")}  to="/feature">Feature</Link>
+                    {/* <Link className={"btn-dashboard " + (active === "work" ? "bg-gray-700" : "")} onClick={()=>setActive("work")}  to="/work">Work</Link>
+                    <Link className={"btn-dashboard " + (active === "feature" ? "bg-gray-700" : "")} onClick={()=>setActive("feature")}  to="/feature">Feature</Link> */}
                 </div>
-                <div className="w-full overflow-hidden">
+                <div className="w-full overflow-hidden border border-[#22223A] rounded-md p-2">
                     <Outlet />
                 </div>
             </div>
