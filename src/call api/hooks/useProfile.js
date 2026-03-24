@@ -21,6 +21,21 @@ const useProfile = () => {
     }
   };
 
+  const editProfile = async (id, data) => {
+    setLoading(true)
+    setError(null)
+    setSuccess(null)
+    try {
+      const res = await profileService.updateOne(id, data)
+      setSuccess({message: "Profile is updated successfully.", type: "updated"})
+      await loadProfile()
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     loadProfile()
   }, [])
@@ -29,7 +44,8 @@ const useProfile = () => {
     success, 
     setSuccess, 
     loading, 
-    error 
+    error,
+    editProfile
   };
 };
 

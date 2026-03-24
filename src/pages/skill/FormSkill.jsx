@@ -25,12 +25,6 @@ export const FormSkill = () =>{
     const [preview, setPreview] = useState(null)
     const [editId, setEditId] = useState(null)
 
-    const [notification, setNotification] = useState(null)
-
-    const notify = (msg, type = "success") => {
-        setNotification({ msg, type });
-        setTimeout(() => setNotification(null), 2500);
-    };
     const handleEdit = (skill) => {
         setEditId(skill.id)
         setPreview(null)
@@ -80,14 +74,12 @@ export const FormSkill = () =>{
             setEditId(null)
             setPreview(null)
             setForm({name: "", rating: "", image: null})
-            notify("updated!!"); 
             return
         }
         addSkill(formData)
         // console.log(skill)
         setForm({name: "", rating: "", image: null})
         setPreview(null)
-        notify("added"); 
     }
     const getSuccessStyle = (type) => {
         switch (type) {
