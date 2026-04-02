@@ -35,32 +35,22 @@
 
 /* Custom Components */
 @layer components {
-  .btn-dashboard {
-    @apply text-base hover:bg-gray-700/50 py-3 px-6 rounded-full transition-all duration-300
+  .sup-tag{
+    @apply text-xs not-last:uppercase px-2 py-1 border rounded-full
   }
-  .form-input {
-    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md 
-    bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none 
-    focus:ring-2 focus:ring-blue-500 duration-300 transition
+  .title {
+    @apply text-5xl font-black text-[#EDEDF8]
   }
-  .bg-dark {
-    @apply bg-slate-100 dark:bg-gray-900 text-gray-600 dark:text-white
+  .sub-title {
+    @apply text-sm text-[#55556A]
   }
-  .dark-mode {
-    @apply bg-slate-100 dark:bg-gray-900 text-gray-600 dark:text-white duration-400 cursor-pointer transition
+  .header {
+    @apply text-xs text-[#66668A] font-bold
   }
-  .box-button {
-    @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 hover:bg-yellow-400
-    cursor-pointer hover:scale-105 transition shadow-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)]
+  .sub-header {
+    @apply text-xs font-medium text-[#333355]
   }
-  .box {
-    @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 hover:bg-yellow-400
-    cursor-pointer hover:scale-105 transition shadow-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)]
-  }
-  .box-product{
-    @apply bg-white dark:bg-gray-800 text-gray-600 dark:text-white p-4 rounded-lg duration-400 hover:bg-yellow-400
-    cursor-pointer hover:scale-105 transition shadow-2xl dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)]
-  }
+  
 }
 body{
   background: #0A0A10;
