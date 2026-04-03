@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { RiImage2Line } from "react-icons/ri";
+import { insertWork } from "../../call api/service/workService";
 
 const FormWork = () => {
   const [form, setForm] = useState({
@@ -26,11 +27,11 @@ const FormWork = () => {
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
 
-    setImages(files);
+    setImage((prev) => [...prev, ...files]);
 
     const previewUrls = files.map((file) => URL.createObjectURL(file));
 
-    setPreview(previewUrls);
+    setPreview((prev) => [...prev, ...previewUrls]);
   };
 
   const handleSubmit = async (e) => {
@@ -45,8 +46,9 @@ const FormWork = () => {
     image.forEach((img) => {
       formData.append("image", img);
     });
-
-    await axios.post("http://localhost:5000/api/work", formData);
+    
+    console.log(Object.fromEntries(formData));
+    await insertWork(formData)
   };
   
 
@@ -188,14 +190,14 @@ const FormWork = () => {
               </h1>
               <label
                 htmlFor="imageInputId"
-                className="border border-[#22223A] bg-[#0A0A10] p-4 rounded-md border-dashed flex flex-col justify-center items-center cursor-pointer"
+                className=" border border-[#22223A] bg-[#0A0A10] p-4 rounded-md border-dashed flex gap-3 justify-center items-center cursor-pointer"
               >
                 {preview.length > 0 ? (
                   preview.map((src, index) => (
                     <img
                       key={index}
                       src={src}
-                      alt="Previefw"
+                      alt="Preview"
                       className="h-[45px] object-cover rounded-md text-[#66668A] text-[10px] font-bold flex flex-col justify-center items-center"
                     />
                   ))

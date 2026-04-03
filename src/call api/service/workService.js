@@ -1,5 +1,4 @@
-import api from "../../lib/api";
-
+import api from "../api/axios";
 /**
  * Insert a new work with a name and image file.
  * @param {{ name: string, image: File }} data
@@ -10,7 +9,7 @@ import api from "../../lib/api";
   // formData.append("name", name);
   // formData.append("image", image);
 export async function insertWork(formData) {
-  const response = await api.post("/works", formData, {
+  const response = await api.post("/work", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
 
